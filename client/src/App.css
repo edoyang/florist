@@ -1,0 +1,8 @@
+.app{
+    display: flex;
+    padding: var(--padding-lg);
+
+    >*{
+        gap: var(--padding-lg);
+    }
+}
