@@ -1,0 +1,129 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    max-width: 250px;
+
+    .category{
+        border: 1px solid #00000020;
+        box-shadow: 0px 0px 10px 0px #00000020;        
+
+        >.label{
+            background-color: var(--header);
+            color: white;
+            border: none;
+
+            &::after{
+                display: none;
+            }
+        }
+
+        .list{
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+
+            .label:last-child{
+                margin-bottom: calc(var(--gap) - 5px);
+
+                &::after{
+                    display: none;
+                }
+            }
+        }
+    }
+
+
+
+    .deals{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #00000020;
+        box-shadow: 0px 0px 10px 0px #00000020; 
+
+        > *{
+            padding: 0.5rem 1rem;
+        }
+
+        .title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+
+            &::after{
+                content: '';
+                display: block;
+                width: 90%;
+                height: 1px;
+                background-color: #00000040;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            >h1{
+                font-size: 25px;
+            }
+        }
+
+        .buttons{
+            display: flex;
+            gap: 5px;
+        }
+    }
+
+    .single{
+
+        .slider{
+            display: flex;
+
+            .item{
+                width: 100%;
+                
+                >img{
+                    height: 250px;
+                    width: 100%;
+                    object-fit: cover;
+                }
+
+                >.price{
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .multi-slider {
+      
+        .carousel {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: mandatory;
+          flex-wrap: nowrap;
+          scroll-snap-type: x mandatory;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+          padding: 1rem 0;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+          .grid {
+            display: inline-flex;
+            flex-direction: column;
+            scroll-snap-align: start;
+            min-width: 100%;
+            box-sizing: border-box;
+            gap: var(--gap);
+
+            >.item{
+                display: flex;
+                flex-direction: column;
+            }
+          }
+        }
+    }
+}

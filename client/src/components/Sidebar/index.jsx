@@ -1,160 +1,63 @@
+import { Carousel } from '..'
+import CarouselButtons from '../CarouselButtons'
+import './style.scss'
+
 const Sidebar = () => {
   return (
     <div className="sidebar">
         <div className="category">
           <div className="label">
-            <img src="" alt="" />
+            <img draggable="false" src="category.svg" alt="category.svg" />
             <p>CATEGORY</p>
           </div>
           <div className="list">
             <div className="label">
-              <img src="" alt="" />
-              <p>Category 1</p>
+              <img draggable="false" src="birthday.svg" alt="birthday.svg" />
+              <p>Birthday</p>
             </div>
             <div className="label">
-              <img src="" alt="" />
-              <p>Category 2</p>
+              <img draggable="false" src="anniversary.svg" alt="anniversary.svg" />
+              <p>Anniversary</p>
             </div>
             <div className="label">
-              <img src="" alt="" />
-              <p>Category 3</p>
+              <img draggable="false" src="valentine.svg" alt="valentine.svg" />
+              <p>Valentine</p>
             </div>
             <div className="label">
-              <img src="" alt="" />
-              <p>Category 4</p>
+              <img draggable="false" src="in-memorial.svg" alt="in-memorial.svg" />
+              <p>In Memorial</p>
             </div>
             <div className="label">
-              <img src="" alt="" />
-              <p>Category 5</p>
+              <img draggable="false" src="gift.svg" alt="gift.svg" />
+              <p>For Gift</p>
+            </div>
+            <div className="label">
+              <img draggable="false" src="promo.svg" alt="promo.svg" />
+              <p>Promo</p>
             </div>
           </div>
         </div>
 
-        <div className="deals">
+        <div className="deals single">
           <div className="title">
             <h1>HOT DEALS</h1>
-            <div className="buttons">
-              <button>Left</button>
-              <button>Right</button>
-            </div>
+            <CarouselButtons />
           </div>
           <div className="slider">
             <div className="item">
-              <img src="" alt="" />
-              <p>product name</p>
-              <p>product price</p>
-              <p>star reviews</p>
+              <img draggable="false" src="example.webp" alt="flowers" />
+              <p className='pname'>product name</p>
+              <p className='price'>product price</p>
+              <p className='review'>star reviews</p>
             </div>
           </div>
         </div>
         
-        <div className="deals">
-          <div className="title">
-            <h1>HOT DEALS</h1>
-            <div className="buttons">
-              <button>Left</button>
-              <button>Right</button>
-            </div>
-          </div>
-          <div className="multi-slider">
-            <div className="grid">
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-            </div>
 
-            <div className="grid">
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-            </div>
-          </div>
+        <Carousel title='HOT DEALS' />
 
-        </div>
+        <Carousel title='TOP DEALS' />
 
-        <div className="deals">
-          <div className="title">
-            <h1>TOP DEALS</h1>
-            <div className="buttons">
-              <button>Left</button>
-              <button>Right</button>
-            </div>
-          </div>
-          <div className="multi-slider">
-            <div className="grid">
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-            </div>
-
-            <div className="grid">
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-              <div className="item">
-                <img src="" alt="" />
-                <p>product name</p>
-                <p>product price</p>
-                <p>star reviews</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
 
         <div className="deals">
           <div className="title">
@@ -168,13 +71,13 @@ const Sidebar = () => {
         </div>
 
         <div className="founder">
-          <img src="" alt="" />
+          <img draggable="false" src="" alt="" />
           <h3>Edoardo</h3>
           <p>Hehe</p>
         </div>
 
         <div className="promo">
-          <img src="" alt="" />
+          <img draggable="false" src="" alt="" />
           <p>Free shipping on orders over $100</p>
         </div>
     </div>

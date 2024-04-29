@@ -39,7 +39,7 @@ const Header = () => {
                 <div className="search-bar">
                     <input type="text" placeholder='Search' />
                     <button className='search'>
-                        <img src="search.svg" alt="search" loading='lazy' />
+                        <img src="search.svg" alt="search" loading='lazy' draggable="false" />
                     </button>
                 </div>
                 <div className="cart">

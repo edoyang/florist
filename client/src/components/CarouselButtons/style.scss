@@ -1,0 +1,36 @@
+.buttons{
+
+    display: flex;
+
+    > button{
+        border: none;
+        background-color: var(--header);
+        padding: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        cursor: pointer;
+        transition: scale 0.05s ease-in-out;
+
+        img{
+            width: 20px;
+            height: 20px;
+
+        }
+        &:hover{
+            background-color: var(--header-dark);
+        }
+
+        &:active{
+            scale: 0.8;
+        }
+    }
+
+    .right{
+
+        img{
+            rotate: 180deg;
+        }
+    }
+}
