@@ -1,6 +1,6 @@
 import './style.scss'
 
-const CarouselButtons = ({ carouselRef, canScrollRight }) => {
+const CarouselButtons = ({ carouselRef, canScrollRight, canScrollLeft }) => {
   const scrollCarousel = (offset) => {
     if (carouselRef.current) {
       carouselRef.current.scrollTo({
@@ -11,7 +11,14 @@ const CarouselButtons = ({ carouselRef, canScrollRight }) => {
   };
 
   const handleMoveLeft = () => {
-    scrollCarousel(-carouselRef.current.offsetWidth);
+    if (canScrollLeft) {
+      scrollCarousel(-carouselRef.current.offsetWidth);
+    } else {
+      carouselRef.current.scrollTo({
+        left: carouselRef.current.scrollWidth - carouselRef.current.offsetWidth,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const handleMoveRight = () => {
@@ -26,7 +33,7 @@ const CarouselButtons = ({ carouselRef, canScrollRight }) => {
   };
 
   return (
-    <div className='buttons'>
+    <div className='carousel-buttons'>
         <button onClick={handleMoveLeft}><img src='left.svg' alt="Left" draggable="false" /></button>
         <button onClick={handleMoveRight} className='right'><img src='left.svg' alt="Right" draggable="false" /></button>
     </div>

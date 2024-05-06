@@ -1,63 +1,18 @@
 import { Carousel } from '..'
 import CarouselButtons from '../CarouselButtons'
+import productData from '../../dummy/product.json'
+{/* const productPromise = fetch('http://localhost:5000/api/products').then(res => res.json()); */}
 import './style.scss'
+import Category from '../Category'
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
-        <div className="category">
-          <div className="label">
-            <img draggable="false" src="category.svg" alt="category.svg" />
-            <p>CATEGORY</p>
-          </div>
-          <div className="list">
-            <div className="label">
-              <img draggable="false" src="birthday.svg" alt="birthday.svg" />
-              <p>Birthday</p>
-            </div>
-            <div className="label">
-              <img draggable="false" src="anniversary.svg" alt="anniversary.svg" />
-              <p>Anniversary</p>
-            </div>
-            <div className="label">
-              <img draggable="false" src="valentine.svg" alt="valentine.svg" />
-              <p>Valentine</p>
-            </div>
-            <div className="label">
-              <img draggable="false" src="in-memorial.svg" alt="in-memorial.svg" />
-              <p>In Memorial</p>
-            </div>
-            <div className="label">
-              <img draggable="false" src="gift.svg" alt="gift.svg" />
-              <p>For Gift</p>
-            </div>
-            <div className="label">
-              <img draggable="false" src="promo.svg" alt="promo.svg" />
-              <p>Promo</p>
-            </div>
-          </div>
-        </div>
+        <Category />
 
-        <div className="deals single">
-          <div className="title">
-            <h1>HOT DEALS</h1>
-            <CarouselButtons />
-          </div>
-          <div className="slider">
-            <div className="item">
-              <img draggable="false" src="example.webp" alt="flowers" />
-              <p className='pname'>product name</p>
-              <p className='price'>product price</p>
-              <p className='review'>star reviews</p>
-            </div>
-          </div>
-        </div>
-        
-
-        <Carousel title='HOT DEALS' />
-
-        <Carousel title='TOP DEALS' />
-
+        <Carousel title="HOT DEALS" products={productData} productsPerGrid={1} type="single" />
+        <Carousel title="HOT DEALS" products={productData} productsPerGrid={3} type="multi" />
+        <Carousel title="HOT DEALS" products={productData} productsPerGrid={3} type="multi" />
 
         <div className="deals">
           <div className="title">

@@ -1,0 +1,69 @@
+[
+    {
+        "id": 1,
+        "product_image": ["example.webp", "example.webp", "example.webp"],
+        "product_name": "Rose Bouquette",
+        "price": [20, 45, 120],
+        "size": ["S", "M", "L"],
+        "total_sold": 122,
+        "review": 4.9,
+        "isActive": true,
+        "discount": "30%"
+    },
+    
+    {
+        "id": 3,
+        "product_image": ["tulip.jpg", "tulip.jpg", "tulip.jpg"],
+        "product_name": "Tulip Bouquette",
+        "price": [15, 35, 90],
+        "size": ["S", "M", "L"],
+        "total_sold": 98,
+        "review": 4.7,
+        "isActive": true,
+        "discount": "20%"
+    },
+    {
+        "id": 4,
+        "product_image": ["pocky.jpg", "pocky.jpg","pocky.jpg"],
+        "product_name": "Pocky Bouquette",
+        "price": [30, 60, 150],
+        "size": ["S", "M", "L"],
+        "total_sold": 110,
+        "review": 4.6,
+        "isActive": true,
+        "discount": "15%"
+    },
+    {
+        "id": 2,
+        "product_image": ["money.jpg", "money.jpg", "money.jpg"],
+        "product_name": "Money Bouquette",
+        "price": [25, 50, 130],
+        "size": ["S", "M", "L"],
+        "total_sold": 105,
+        "review": 4.8,
+        "isActive": true,
+        "discount": "0"
+    },
+    {
+        "id": 5,
+        "product_image": ["daisy.jpg", "daisy.jpg", "daisy.jpg"],
+        "product_name": "Daisy Bouquette",
+        "price": [10, 30, 80],
+        "size": ["S", "M", "L"],
+        "total_sold": 90,
+        "review": 4.5,
+        "isActive": true,
+        "discount": "20%"
+    },
+    {
+        "id": 6,
+        "product_image": ["snack.jpg", "snack.jpg", "snack.jpg"],
+        "product_name": "Snack Bouquette",
+        "price": [15, 40, 100],
+        "size": ["S", "M", "L"],
+        "total_sold": 95,
+        "review": 4.6,
+        "isActive": true,
+        "discount": "0"
+    }
+]
