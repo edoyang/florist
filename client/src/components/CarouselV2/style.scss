@@ -1,0 +1,51 @@
+.carousel-2 {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    gap: 1rem;
+    overflow: hidden;  /* Ensures that overflow is handled strictly within child components */
+    position: relative;
+
+    .title {
+        display: flex;
+        gap: 1rem;
+
+        .top-left {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .carousel-2-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+    }
+
+    .carousel-2-container {
+        display: flex;
+        width: 100%;
+        gap: 1rem;
+        overflow-x: scroll;
+        position: relative;
+        scroll-snap-type: x mandatory;
+
+        .item{
+            scroll-snap-align: start;
+            width: max-content;
+            flex: 0 0 auto;
+            width: calc(50% - 0.5rem);
+
+            .image{
+                max-width: 250px;
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

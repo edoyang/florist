@@ -1,4 +1,7 @@
 import Hero from "../../components/Hero";
+import "./style.scss";
+import products from "../../dummy/product.json";
+import CarouselV2 from "../../components/CarouselV2";
 
 
 const Home = () => {
@@ -14,15 +17,15 @@ const Home = () => {
   return (
     <div className="home">
         <Hero items={sliderItems} />
-        <div className="indicator">
-            <div className="dot active"></div>
-            <div className="dot"></div>
+
+        <div className="promo-banner">
+            <div className="container">
+                <img src="https://via.placeholder.com/600x300?text=Image+1" alt="image1" />
+                <img src="https://via.placeholder.com/600x300?text=Image+2" alt="image2" />
+            </div>
         </div>
 
-        {/* <div className="top-product">
-            <img src="https://via.placeholder.com/400x400" alt="product" />
-            <img src="https://via.placeholder.com/400x400" alt="product" />
-        </div> */}
+        <CarouselV2 title="Shop by Category" products={products} />
 
         {/* <div className="shop-by-category">
             <div className="top">

@@ -10,7 +10,6 @@ function Slider({ items }) {
     if (scrollContainer.current) {
       const container = scrollContainer.current;
       if (container.scrollLeft <= 0) {
-        // If at the start, jump to the end (minus one full view width to simulate infinite scroll)
         container.scrollTo({ left: container.scrollWidth - container.offsetWidth, behavior: 'smooth' });
       } else {
         container.scrollBy({ left: -300, behavior: 'smooth' });
@@ -71,7 +70,7 @@ function Slider({ items }) {
       </div>
       <div className="hero-buttons">
         <button onClick={scrollLeft}><img src='left.svg' alt='left' /></button>
-        <button className="right" onClick={scrollRight}><img src='right.svg' alt='right' /></button>
+        <button className="right" onClick={scrollRight}><img src='left.svg' alt='right' /></button>
       </div>
     </div>
   );

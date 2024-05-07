@@ -2,6 +2,7 @@
     display: flex;
     padding: var(--padding-lg);
     gap: var(--padding-lg);
+    width: 100%;
 
     > *{
         flex: 1;
