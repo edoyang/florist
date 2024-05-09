@@ -1,4 +1,6 @@
 import './style.scss'
+import LeftArrow from '../../assets/left.svg';
+import RightArrow from '../../assets/right.svg';
 
 const CarouselButtons = ({ carouselRef, canScrollRight, canScrollLeft }) => {
   const scrollCarousel = (offset) => {
@@ -34,8 +36,8 @@ const CarouselButtons = ({ carouselRef, canScrollRight, canScrollLeft }) => {
 
   return (
     <div className='carousel-buttons'>
-        <button onClick={handleMoveLeft}><img src='left.svg' alt="Left" draggable="false" /></button>
-        <button onClick={handleMoveRight} className='right'><img src='left.svg' alt="Right" draggable="false" /></button>
+        <button onClick={handleMoveLeft}><img src={LeftArrow} alt="Left" draggable="false" /></button>
+        <button onClick={handleMoveRight}><img src={RightArrow} alt="Right" draggable="false" /></button>
     </div>
   );
 }

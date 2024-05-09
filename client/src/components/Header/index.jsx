@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './style.scss';
 import { useState } from 'react';
+import searchSvg from '../../assets/search.svg';
 
 const Header = () => {
     const [isActive, setIsActive] = useState(false);
@@ -34,12 +35,12 @@ const Header = () => {
         </div>
             <div className="main-header">
                 <div className="logo">
-                    <h1>LOGO</h1>
+                    <Link to="/">LOGO</Link>
                 </div>
                 <div className="search-bar">
                     <input type="text" placeholder='Search' />
                     <button className='search'>
-                        <img src="search.svg" alt="search" loading='lazy' draggable="false" />
+                        <img src={searchSvg} alt="search" loading='lazy' draggable="false" />
                     </button>
                 </div>
                 <div className="cart">

@@ -33,7 +33,7 @@ const Sidebar = () => {
 
         <div className="promo">
           <img draggable="false" src="" alt="" />
-          <p>Free shipping on orders over $100</p>
+          <button>Free shipping on orders over $100</button>
         </div>
     </div>
   )

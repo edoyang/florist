@@ -1,27 +1,25 @@
 import { useRef, useState, useEffect } from 'react';
 import CarouselButtons from '../CarouselButtons';
-import './style.scss'
+import ReviewStar from '../ReviewStar';
+import { updateScrollPosition } from '../../utils/scroll';
+import { chunkProducts } from '../../utils/chunkProduct';
+import './style.scss';
 
 const Carousel = ({ title, products, productsPerGrid, type }) => {
   const carouselRef = useRef(null);
   const [scrollPosition, setScrollPosition] = useState({ canScrollLeft: false, canScrollRight: true });
   const [isHovering, setIsHovering] = useState(false);
 
+  const handleImageError = (e) => {
+    e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+  };
+  
   useEffect(() => {
-    const carousel = carouselRef.current;
-    const updateScrollPosition = () => {
-      if (!carousel) return;
-      const maxScrollLeft = carousel.scrollWidth - carousel.offsetWidth;
-      setScrollPosition({
-        canScrollLeft: carousel.scrollLeft > 0,
-        canScrollRight: carousel.scrollLeft < maxScrollLeft 
-      });
-    };
-
-    if (carousel) {
-      carousel.addEventListener('scroll', updateScrollPosition);
-      updateScrollPosition();
-      return () => carousel.removeEventListener('scroll', updateScrollPosition);
+    const update = () => updateScrollPosition(carouselRef, setScrollPosition);
+    if (carouselRef.current) {
+      carouselRef.current.addEventListener('scroll', update);
+      update();
+      return () => carouselRef.current.removeEventListener('scroll', update);
     }
   }, []);
 
@@ -43,39 +41,12 @@ const Carousel = ({ title, products, productsPerGrid, type }) => {
       }, 5000);
     }
 
-    return () => {
-      if (interval) {
-        clearInterval(interval);
-      }
-    };
+    return () => clearInterval(interval);
   }, [scrollPosition.canScrollRight, isHovering]);
 
   const handleMouseEnter = () => setIsHovering(true);
   const handleMouseLeave = () => setIsHovering(false);
-
-  const chunkProducts = (arr, size) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-      arr.slice(i * size, i * size + size)
-    );
-
-    const productChunks = chunkProducts(products, productsPerGrid);
-
-  const renderStars = (review) => {
-    const fullStars = Math.floor(review);
-    const halfStar = review % 1 >= 0.5 ? 1 : 0;
-    const emptyStars = 5 - fullStars - halfStar;
-    return (
-      <>
-        {Array(fullStars).fill().map((_, idx) => (
-          <img key={idx} src="review.svg" alt="full star"/>
-        ))}
-        {halfStar === 1 && <img src="review_0.svg" alt="half star"/>}
-        {Array(emptyStars).fill().map((_, idx) => (
-          <img key={`empty-${idx}`} src="review_0.svg" alt="empty star"/>
-        ))}
-      </>
-    );
-  };
+  const productChunks = chunkProducts(products, productsPerGrid);
 
   return (
     <div className="deals" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -90,14 +61,14 @@ const Carousel = ({ title, products, productsPerGrid, type }) => {
               {chunk.map(product => (
                 <div className="item" key={product.id}>
                   <div className="image">
-                    <img draggable="false" src={product.product_image[0]} alt={product.product_name} />
+                    <img onError={handleImageError} draggable="false" src={product.product_image[0]} alt={product.product_name} />
                   </div>
                   <div className="detail">
                     <p className='pname'>{product.product_name}</p>
                     <p className='price'>{`$${product.price[0]}`}</p>
                     <div className='review'>
                       <div className="review-stars">
-                        {renderStars(product.review)}
+                        <ReviewStar review={product.review} />
                       </div>
                       <p>({product.review})</p>
                     </div>

@@ -34,4 +34,82 @@
             }
         }
     }
+
+    .newsletter{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        input{
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: none;
+            background-color: #00000015;
+
+            &:focus-visible{
+                outline: none;
+            }
+        }
+
+        >button{
+            background-color: var(--header);
+            padding: 5px 20px;
+            width: max-content;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+
+            &:active{
+                scale: 0.9;
+                transition: all 0.075s ease-in-out;
+            }
+        }
+    }
+
+    .founder{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #00000020;
+        padding: 1rem;
+        background-color: white;
+        box-shadow: 0px 0px 10px 0px #00000020;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    >.promo{
+        background-image: url("https://img.freepik.com/free-vector/abstract-sale-promotion-banner-template_52683-16601.jpg");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        min-height: 300px;
+
+        >button{
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        &:hover{
+            >button{
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+    @media screen and (max-width: 840px){
+        display: none;
+        
+    }
 }

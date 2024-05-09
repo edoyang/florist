@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
+import leftArrow from '../../assets/left.svg';
+import rightArrow from '../../assets/right.svg';
 
 function Slider({ items }) {
   const scrollContainer = useRef(null);
@@ -22,7 +24,6 @@ function Slider({ items }) {
       const container = scrollContainer.current;
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
       if (container.scrollLeft >= maxScrollLeft - container.clientWidth) {
-        // If near or at the end, jump back to the start
         container.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
         container.scrollBy({ left: 300, behavior: 'smooth' });
@@ -37,7 +38,6 @@ function Slider({ items }) {
           const container = scrollContainer.current;
           const maxScrollLeft = container.scrollWidth - container.clientWidth;
           if (container.scrollLeft >= maxScrollLeft - container.clientWidth) {
-            // If near or at the end, restart from the beginning
             container.scrollTo({ left: 0, behavior: 'smooth' });
           } else {
             scrollRight();
@@ -63,14 +63,14 @@ function Slider({ items }) {
     <div className="hero" onMouseEnter={stopAutoScroll} onMouseLeave={startAutoScroll}>
       <div className="container" ref={scrollContainer}>
         {items.map((item, index) => (
-          <Link key={index} to={item.link}>
-            <img src={item.imageUrl} alt={`Slide ${index + 1}`} />
+          <Link draggable={false} key={index} to={item.link}>
+            <img draggable={false} src={item.imageUrl} alt={`Slide ${index + 1}`} />
           </Link>
         ))}
       </div>
       <div className="hero-buttons">
-        <button onClick={scrollLeft}><img src='left.svg' alt='left' /></button>
-        <button className="right" onClick={scrollRight}><img src='left.svg' alt='right' /></button>
+        <button draggable={false} onClick={scrollLeft}><img draggable={false} src={leftArrow} alt='left' /></button>
+        <button draggable={false} onClick={scrollRight}><img draggable={false} src={rightArrow} alt='right' /></button>
       </div>
     </div>
   );

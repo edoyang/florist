@@ -1,0 +1,27 @@
+.app{
+    display: flex;
+    padding: var(--padding-lg);
+    gap: var(--padding-lg);
+}
+
+.review {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--gap) * 1);
+    margin-top: calc(var(--gap) / 1.5);
+
+    .review-stars {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--gap) / 2);
+
+        img {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    p{
+        display: none;
+    }
+}
