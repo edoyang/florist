@@ -58,6 +58,9 @@ const Header = () => {
                     </button>
                 </div>
                 <div className="cart">
+                    <div className="logo">
+                        <Link to="/">LOGO</Link>
+                    </div>
                     <div className="cart-icon">
                         <i className="fas fa-shopping-cart"></i>
                         <div className="cart-list">
