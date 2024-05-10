@@ -1,3 +1,42 @@
+$gap: 20px; // Example gap size, define according to your design
+
+@mixin hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin snap-align {
+    display: flex;
+    flex-direction: column;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+}
+
+@mixin review-style {
+    display: flex;
+    align-items: center;
+    gap: calc($gap / 2);
+}
+
+// Mixin for image styles
+@mixin image-style($width, $height) {
+    img {
+        width: $width;
+        height: $height;
+        object-fit: cover;
+    }
+}
+
+
 .deals {
     display: flex;
     flex-direction: column;
@@ -9,9 +48,8 @@
     }
 
     .title {
-        display: flex;
+        @include flex-center;
         justify-content: space-between;
-        align-items: center;
         position: relative;
 
         &::after {
@@ -31,45 +69,31 @@
         }
 
         .carousel-buttons {
-            display: flex;
+            @include flex-center;
             gap: 5px;
         }
     }
 
     >.slider {
         > .carousel {
+            @include hide-scrollbar;
             display: flex;
             overflow-x: auto;
-            scroll-snap-type: mandatory;
-            flex-wrap: nowrap;
-            gap: calc(var(--gap) *2);
             scroll-snap-type: x mandatory;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+            flex-wrap: nowrap;
+            gap: calc($gap * 2);
             padding: 1rem 0;
 
-            &::-webkit-scrollbar {
-                display: none;
-            }
-
             .grid {
-                display: flex;
-                flex-direction: column;
-                scroll-snap-align: start;
+                @include snap-align;
                 min-width: 100%;
-                box-sizing: border-box;
-                gap: calc(var(--gap) * 3);
+                gap: calc($gap * 3);
 
                 .item {
-                    display: flex;
-                    flex-direction: column;
-                    
+                    @include snap-align;
+
                     .image{
-                        img {
-                            height: 250px;
-                            width: 100%;
-                            object-fit: cover;
-                        }
+                        @include image-style(100%, 250px);
                     }
 
                     .detail{
@@ -78,15 +102,11 @@
                         }
     
                         .review {
-                            display: flex;
-                            align-items: center;
-                            gap: calc(var(--gap) / 1.5);
-    
+                            @include review-style;
+
                             .review-stars {
-                                display: flex;
-                                align-items: center;
-                                gap: calc(var(--gap) / 2);
-    
+                                @include flex-center;
+
                                 img {
                                     width: 15px;
                                     height: 15px;
@@ -99,34 +119,27 @@
         }
     }
 
-    .multi{
+    .multi {
         .carousel {
-
-            .grid{
-
+            .grid {
                 .item {
                     display: flex;
                     flex-direction: row;
-                    gap: var(--gap);
+                    gap: $gap;
 
                     .image {
-
-                        img {
-                            height: 150px;
-                            width: 125px;
-                            object-fit: cover;
-                        }
+                        @include image-style(125px, 150px);
                     }
 
-                    .detail{
+                    .detail {
                         display: flex;
                         flex-direction: column;
                         overflow: hidden;
 
                         .pname {
                             overflow: hidden;
-                            white-space: nowrap;       
-                            text-overflow: ellipsis;                     
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
                         }
 
                         .price {
@@ -134,15 +147,12 @@
                         }
 
                         .review {
-                            display: flex;
-                            align-items: center;
-                            gap: calc(var(--gap) * 1);
-                            margin-top: calc(var(--gap) / 1.5);
+                            @include review-style;
+                            gap: $gap;
+                            margin-top: calc($gap / 1.5);
 
                             .review-stars {
-                                display: flex;
-                                align-items: center;
-                                gap: calc(var(--gap) / 2);
+                                @include flex-center;
 
                                 img {
                                     width: 12px;
@@ -150,14 +160,13 @@
                                 }
                             }
 
-                            p{
+                            p {
                                 display: none;
                             }
                         }
                     }
                 }
             }
-
         }
     }
 }

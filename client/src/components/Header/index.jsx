@@ -1,17 +1,31 @@
 import { Link } from 'react-router-dom';
 import './style.scss';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import searchSvg from '../../assets/search.svg';
 
 const Header = () => {
     const [isActive, setIsActive] = useState(false);
+    const headerRef = useRef(null);
 
     const toggleClassActive = () => {
         setIsActive(!isActive);
     }
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (headerRef.current && !headerRef.current.contains(event.target)) {
+                setIsActive(false); 
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
   return (
-    <div className="header">
+    <div className="header" ref={headerRef}>
         <div className="user-menu">
         <div className={`hamburger ${isActive ? 'active' : ''}`} onClick={toggleClassActive}>
                 <span className="line"></span>

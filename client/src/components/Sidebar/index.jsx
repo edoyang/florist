@@ -1,7 +1,7 @@
 import { Carousel } from '..'
 import CarouselButtons from '../CarouselButtons'
 import productData from '../../dummy/product.json'
-{/* const productPromise = fetch('http://localhost:5000/api/products').then(res => res.json()); */}
+{/* const productData = fetch('http://localhost:5000/api/products').then(res => res.json()); */}
 import './style.scss'
 import Category from '../Category'
 

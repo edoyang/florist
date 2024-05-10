@@ -49,7 +49,7 @@ const CarouselV2 = ({ title, products, links }) => {
     <div className='carousel-2'>
       <div className="title">
           <div className="top-left">
-              <h2>{title}</h2>
+              <h2 className='title'>{title}</h2>
               <div className="filter">
                 {links && links.map(link => (
                   <Link draggable={false} key={link.label} to={link.path}>{link.label}</Link>
