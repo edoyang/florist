@@ -3,7 +3,9 @@ import CarouselButtons from '../CarouselButtons';
 import ReviewStar from '../ReviewStar';
 import { updateScrollPosition } from '../../utils/scroll';
 import { chunkProducts } from '../../utils/chunkProduct';
+import PriceDisplay from '../PriceDisplay';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 const Carousel = ({ title, products, productsPerGrid, type }) => {
   const carouselRef = useRef(null);
@@ -59,13 +61,13 @@ const Carousel = ({ title, products, productsPerGrid, type }) => {
           {productChunks.map((chunk, index) => (
             <div className="grid" key={index}>
               {chunk.map(product => (
-                <div className="item" key={product.id}>
+                <Link to={`/product/${product._id.$oid}#product-page`} key={product._id.$oid} className="item">
                   <div className="image">
                     <img onError={handleImageError} draggable="false" src={product.product_image[0]} alt={product.product_name} />
                   </div>
                   <div className="detail">
                     <p className='pname'>{product.product_name}</p>
-                    <p className='price'>{`$${product.price[0]}`}</p>
+                    <PriceDisplay product={product} />
                     <div className='review'>
                       <div className="review-stars">
                         <ReviewStar review={product.review} />
@@ -73,7 +75,7 @@ const Carousel = ({ title, products, productsPerGrid, type }) => {
                       <p>({product.review})</p>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           ))}

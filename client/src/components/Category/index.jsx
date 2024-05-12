@@ -7,10 +7,12 @@ import forGift from '../../assets/gift.svg';
 import inMemorial from '../../assets/in-memorial.svg';
 import promo from '../../assets/promo.svg';
 import valentine from '../../assets/valentine.svg';
+import { Link } from 'react-router-dom';
 
 const Category = () => {
   const [categories, setCategories] = useState([]);
 
+  // Define your images and URLs in separate mappings
   const categoryImages = {
     Birthday: birthday,
     Anniversary: anniversary,
@@ -18,6 +20,15 @@ const Category = () => {
     'In Memorial': inMemorial,
     Valentine: valentine,
     Promo: promo,
+  };
+
+  const categoryUrls = {
+    Birthday: 'birthday',
+    Anniversary: 'anniversary',
+    'For Gift': 'for-gift',
+    'In Memorial': 'in-memorial',
+    Valentine: 'valentine',
+    Promo: 'promo',
   };
 
   useEffect(() => {
@@ -36,10 +47,10 @@ const Category = () => {
       </div>
       <div className="list">
         {categories.map((category, index) => (
-          <div className="label" key={index}>
+          <Link to={`/browse/${categoryUrls[category]}`} className="label" key={index}>
             <img draggable="false" src={categoryImages[category]} alt={category} />
             <p>{category}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

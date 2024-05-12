@@ -91,6 +91,8 @@ $gap: 20px; // Example gap size, define according to your design
 
                 .item {
                     @include snap-align;
+                    text-decoration: none;
+                    color: black;
 
                     .image{
                         @include image-style(100%, 250px);

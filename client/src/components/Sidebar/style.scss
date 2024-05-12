@@ -24,6 +24,12 @@
             display: flex;
             flex-direction: column;
             gap: var(--gap);
+            
+
+            .label{
+                text-decoration: none;
+                color: #000;
+            }
 
             .label:last-child{
                 margin-bottom: calc(var(--gap) - 5px);

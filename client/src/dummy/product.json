@@ -1,59 +1,87 @@
 [
     {
-        "id": 1,
-        "product_image": ["example.webp", "example.webp", "example.webp"],
+        "_id": {
+            "$oid": "662764f834a9ab89e2445d6c"
+          },
+        "product_image": [
+            "/example.webp", 
+            "/rose.jpg", 
+            "/example.webp"],
         "product_name": "Rose Bouquette",
-        "price": [20, 45, 120],
-        "size": ["S", "M", "L"],
+        "original_price": 60,
+        "price":30,
         "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
         "total_sold": 122,
         "review": 4.9,
         "isActive": true,
-        "discount": "30%"
+        "discount": 50
     },
-    
-    {
-        "id": 3,
-        "product_image": ["tulip.jpg", "tulip.jpg", "tulip.jpg"],
-        "product_name": "Tulip Bouquette",
-        "price": [15, 35, 90],
-        "size": ["S", "M", "L"],
-        "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
-        "total_sold": 98,
-        "review": 4.7,
-        "isActive": true,
-        "discount": "20%"
-    },
-    {
-        "id": 4,
-        "product_image": ["pocky.jpg", "pocky.jpg","pocky.jpg"],
-        "product_name": "Pocky Bouquette",
-        "price": [30, 60, 150],
-        "size": ["S", "M", "L"],
-        "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
-        "total_sold": 110,
-        "review": 4.6,
-        "isActive": true,
-        "discount": "15%"
-    },
-    {
-        "id": 2,
-        "product_image": ["money.jpg", "money.jpg", "money.jpg"],
+        {
+        "_id": {
+            "$oid": "662764f834a9ab89e2445d8c"
+        },
+        "product_image": [
+            "/money.jpg",
+            "/money.jpg",
+            "/money.jpg"
+        ],
         "product_name": "Money Bouquette",
-        "price": [25, 50, 130],
-        "size": ["S", "M", "L"],
+        "original_price": 50,
+        "price": 50,
         "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
         "total_sold": 105,
         "review": 4.8,
         "isActive": true,
-        "discount": "0"
+        "discount": 0
     },
     {
-        "id": 5,
-        "product_image": ["daisy.jpg", "daisy.jpg", "daisy.jpg"],
+        "_id": {
+            "$oid": "662764f834a9cb89e2445d8c"
+        },
+        "product_image": [
+            "/tulip.jpg",
+            "/tulip.jpg",
+            "/tulip.jpg"
+        ],
+        "product_name": "Tulip Bouquette",
+        "original_price": 35,
+        "price": 28,
+        "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
+        "total_sold": 98,
+        "review": 4.7,
+        "isActive": true,
+        "discount": 20
+    },
+    {
+        "_id": {
+            "$oid": "682764f834a9ab89e2445d8c"
+        },
+        "product_image": [
+            "/pocky.jpg",
+            "/pocky.jpg",
+            "/pocky.jpg"
+        ],
+        "product_name": "Pocky Bouquette",
+        "original_price": 40,
+        "price": 40,
+        "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
+        "total_sold": 110,
+        "review": 4.6,
+        "isActive": true,
+        "discount": 0
+    },
+    {
+        "_id": {
+            "$oid": "662764f834a9vb89e2445d8c"
+        },
+        "product_image": [
+            "/daisy.jpg",
+            "/daisy.jpg",
+            "/daisy.jpg"
+        ],
         "product_name": "Daisy Bouquette",
-        "price": [10, 30, 80],
-        "size": ["S", "M", "L"],
+        "original_price": 90,
+        "price": 72,
         "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
         "total_sold": 90,
         "review": 4.5,
@@ -61,87 +89,129 @@
         "discount": "20%"
     },
     {
-        "id": 6,
-        "product_image": ["snack.jpg", "snack.jpg", "snack.jpg"],
+        "_id": {
+            "$oid": "662764f834a9ab89e2745d8c"
+        },
+        "product_image": [
+            "/snack.jpg",
+            "/snack.jpg",
+            "/snack.jpg"
+        ],
         "product_name": "Snack Bouquette",
-        "price": [15, 40, 100],
-        "size": ["S", "M", "L"],
+        "original_price": 35,
+        "price": 35,
         "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
         "total_sold": 95,
         "review": 4.6,
         "isActive": true,
-        "discount": "0"
+        "discount": 0
     },
     {
-        "id": 7,
-        "product_image": ["succulent.jpg", "succulent.jpg", "succulent.jpg"],
+        "_id": {
+            "$oid": "662764f834a9ab19e2445d8c"
+        },
+        "product_image": [
+            "/succulent.jpg",
+            "/succulent.jpg",
+            "/succulent.jpg"
+        ],
         "product_name": "Succulent Bouquette",
-        "price": [25, 55, 110],
-        "size": ["S", "M", "L"],
+        "original_price": 25,
+        "price": 25,
         "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
         "total_sold": 87,
         "review": 4.8,
         "isActive": true,
-        "discount": "10%"
+        "discount": 0
     },
     {
-        "id": 8,
-        "product_image": ["chocolate.jpg", "chocolate.jpg", "chocolate.jpg"],
+        "_id": {
+            "$oid": "662764f834c9ab89e2445d8c"
+        },
+        "product_image": [
+            "/chocolate.jpg",
+            "/chocolate.jpg",
+            "/chocolate.jpg"
+        ],
         "product_name": "Chocolate Bouquette",
-        "price": [20, 50, 125],
-        "size": ["S", "M", "L"],
+        "original_price": 60,
+        "price": 60,
         "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
         "total_sold": 120,
         "review": 4.9,
         "isActive": true,
-        "discount": "25%"
+        "discount": 0
     },
     {
-        "id": 9,
-        "product_image": ["book.jpg", "book.jpg", "book.jpg"],
+        "_id": {
+            "$oid": "662764f834p9ab89e2445d8c"
+        },
+        "product_image": [
+            "/book.jpg",
+            "/book.jpg",
+            "/book.jpg"
+        ],
         "product_name": "Book Bouquette",
-        "price": [30, 70, 140],
-        "size": ["S", "M", "L"],
+        "original_price": 75,
+        "price": 75,
         "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
         "total_sold": 53,
         "review": 4.4,
         "isActive": true,
-        "discount": "15%"
+        "discount": 0
     },
     {
-        "id": 10,
-        "product_image": ["fruit.jpg", "fruit.jpg", "fruit.jpg"],
+        "_id": {
+            "$oid": "662764f834a9ab89e2825d8c"
+        },
+        "product_image": [
+            "/fruit.jpg",
+            "/fruit.jpg",
+            "/fruit.jpg"
+        ],
         "product_name": "Fruit Bouquette",
-        "price": [15, 35, 90],
-        "size": ["S", "M", "L"],
+        "original_price": 30,
+        "price": 30,
         "category": ["Birthday", "Anniversary", "Valentine", "For Gift", "Promo"],
         "total_sold": 102,
         "review": 4.7,
         "isActive": true,
-        "discount": "20%"
+        "discount": 0
     },
     {
-        "id": 11,
-        "product_image": ["jasmine.jpg", "jasmine.jpg", "jasmine.jpg"],
+        "_id": {
+            "$oid": "662764f834a9ab89e2995d8c"
+        },
+        "product_image": [
+            "/jasmine.jpg",
+            "/jasmine.jpg",
+            "/jasmine.jpg"
+        ],
         "product_name": "Jasmine Bouquette",
-        "price": [22, 45, 115],
-        "size": ["S", "M", "L"],
+        "original_price": 90,
+        "price": 85.5,
         "category": ["Birthday", "Anniversary", "In Memorial"],
         "total_sold": 76,
         "review": 4.3,
         "isActive": false,
-        "discount": "5%"
+        "discount": 5
     },
     {
-        "id": 12,
-        "product_image": ["aromatic.jpg", "aromatic.jpg", "aromatic.jpg"],
+        "_id": {
+            "$oid": "662764f834a9ab89e1045d8c"
+        },
+        "product_image": [
+            "/candle.jpg",
+            "/candle.jpg",
+            "/candle.jpg"
+        ],
         "product_name": "Aromatic Candles Bouquette",
-        "price": [18, 40, 100],
-        "size": ["S", "M", "L"],
+        "original_price": 25,
+        "price": 25,
         "category": ["Birthday", "Anniversary", "Valentine", "For Gift"],
         "total_sold": 69,
         "review": 4.6,
         "isActive": true,
-        "discount": "12%"
+        "discount": 0
     }
 ]

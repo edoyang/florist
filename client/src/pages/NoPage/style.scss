@@ -19,6 +19,7 @@
         opacity: 1;
         visibility: visible;
         transition: opacity 3s ease, visibility 0s linear 3s;
+        pointer-events: none;
 
         .alert-message{
             background-color: white;

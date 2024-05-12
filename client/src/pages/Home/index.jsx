@@ -6,11 +6,11 @@ import CarouselV2 from "../../components/CarouselV2";
 
 const Home = () => {
     const sliderItems = [
-        { link: "/products/1", imageUrl: "https://via.placeholder.com/600x300?text=Image+1" },
-        { link: "/products/2", imageUrl: "https://via.placeholder.com/600x300?text=Image+2" },
-        { link: "/products/3", imageUrl: "https://via.placeholder.com/600x300?text=Image+3" },
-        { link: "/products/4", imageUrl: "https://via.placeholder.com/600x300?text=Image+4" },
-        { link: "/products/5", imageUrl: "https://via.placeholder.com/600x300?text=Image+5" }
+        { link: "/product/1", imageUrl: "https://via.placeholder.com/600x300?text=Image+1" },
+        { link: "/product/2", imageUrl: "https://via.placeholder.com/600x300?text=Image+2" },
+        { link: "/product/3", imageUrl: "https://via.placeholder.com/600x300?text=Image+3" },
+        { link: "/product/4", imageUrl: "https://via.placeholder.com/600x300?text=Image+4" },
+        { link: "/product/5", imageUrl: "https://via.placeholder.com/600x300?text=Image+5" }
       ];
 
 

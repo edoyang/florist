@@ -4,6 +4,7 @@ import './style.scss';
 import ReviewStar from '../ReviewStar';
 import leftArrow from '../../assets/left.svg';
 import rightArrow from '../../assets/right.svg';
+import PriceDisplay from '../PriceDisplay';
 
 const CarouselV2 = ({ title, products, links }) => {
   const carouselRef = useRef(null);
@@ -23,11 +24,14 @@ const CarouselV2 = ({ title, products, links }) => {
   const handlePrevClick = () => {
     if (carouselRef.current && !isTransitioning) {
       setIsTransitioning(true);
-      if (carouselRef.current.scrollLeft === 0) {
-        carouselRef.current.scrollLeft = totalWidth.current;
+      let newScrollPosition = carouselRef.current.scrollLeft - 150;
+  
+      if (newScrollPosition < 0) {
+        carouselRef.current.scrollLeft = totalWidth.current + newScrollPosition + 150;
       } else {
-        carouselRef.current.scrollLeft -= 250;
+        carouselRef.current.scrollLeft = newScrollPosition;
       }
+  
       setTimeout(() => setIsTransitioning(false), 500);
     }
   };
@@ -35,16 +39,17 @@ const CarouselV2 = ({ title, products, links }) => {
   const handleNextClick = () => {
     if (carouselRef.current && !isTransitioning) {
       setIsTransitioning(true);
-      if (carouselRef.current.scrollLeft + carouselRef.current.clientWidth >= totalWidth.current) {
-        carouselRef.current.scrollLeft = 0; 
+      const newScrollPosition = carouselRef.current.scrollLeft + 150;
+      
+      if (newScrollPosition > totalWidth.current) {
+        carouselRef.current.scrollLeft = 0;
       } else {
-        carouselRef.current.scrollLeft += 250;
+        carouselRef.current.scrollLeft = newScrollPosition;
       }
       setTimeout(() => setIsTransitioning(false), 500);
     }
   };
   
-
   return (
     <div className='carousel-2'>
       <div className="title">
@@ -67,7 +72,7 @@ const CarouselV2 = ({ title, products, links }) => {
       </div>
       <div ref={carouselRef} className="carousel-2-container">
           {products.map(product => (
-              <div key={product.id} className="item">
+            <Link to={`/product/${product._id.$oid}#product-page`} key={product._id.$oid} className="item">
                   <div className="image">
                       <img draggable={false} 
                         src={product.product_image[0]} 
@@ -76,14 +81,14 @@ const CarouselV2 = ({ title, products, links }) => {
                       />
                   </div>
                   <p>{product.product_name}</p>
-                  <h4>${product.price[0]}</h4>
+                  <PriceDisplay product={product} />
                   <div className="review">
                     <div className="review-stars">
                       <p>{product.review}</p>
                       <ReviewStar review={product.review} />
                     </div>
                   </div>
-              </div>
+              </Link>
           ))}
       </div>
     </div>

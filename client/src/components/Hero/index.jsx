@@ -14,7 +14,7 @@ function Slider({ items }) {
       if (container.scrollLeft <= 0) {
         container.scrollTo({ left: container.scrollWidth - container.offsetWidth, behavior: 'smooth' });
       } else {
-        container.scrollBy({ left: -300, behavior: 'smooth' });
+        container.scrollBy({ left: -150, behavior: 'smooth' });
       }
     }
   };
@@ -26,7 +26,7 @@ function Slider({ items }) {
       if (container.scrollLeft >= maxScrollLeft - container.clientWidth) {
         container.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        container.scrollBy({ left: 300, behavior: 'smooth' });
+        container.scrollBy({ left: 150, behavior: 'smooth' });
       }
     }
   };
@@ -43,7 +43,7 @@ function Slider({ items }) {
             scrollRight();
           }
         }
-      }, 3000);
+      }, 1500);
     }
   };
 
