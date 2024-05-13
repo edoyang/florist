@@ -4,9 +4,9 @@
             "$oid": "662764f834a9ab89e2445d6c"
           },
         "product_image": [
-            "/example.webp", 
-            "/rose.jpg", 
-            "/example.webp"],
+            "example.webp", 
+            "rose.jpg", 
+            "example.webp"],
         "product_name": "Rose Bouquette",
         "original_price": 60,
         "price":30,
@@ -21,9 +21,9 @@
             "$oid": "662764f834a9ab89e2445d8c"
         },
         "product_image": [
-            "/money.jpg",
-            "/money.jpg",
-            "/money.jpg"
+            "money.jpg",
+            "money.jpg",
+            "money.jpg"
         ],
         "product_name": "Money Bouquette",
         "original_price": 50,
@@ -39,9 +39,9 @@
             "$oid": "662764f834a9cb89e2445d8c"
         },
         "product_image": [
-            "/tulip.jpg",
-            "/tulip.jpg",
-            "/tulip.jpg"
+            "tulip.jpg",
+            "tulip.jpg",
+            "tulip.jpg"
         ],
         "product_name": "Tulip Bouquette",
         "original_price": 35,
@@ -57,9 +57,9 @@
             "$oid": "682764f834a9ab89e2445d8c"
         },
         "product_image": [
-            "/pocky.jpg",
-            "/pocky.jpg",
-            "/pocky.jpg"
+            "pocky.jpg",
+            "pocky.jpg",
+            "pocky.jpg"
         ],
         "product_name": "Pocky Bouquette",
         "original_price": 40,
@@ -75,9 +75,9 @@
             "$oid": "662764f834a9vb89e2445d8c"
         },
         "product_image": [
-            "/daisy.jpg",
-            "/daisy.jpg",
-            "/daisy.jpg"
+            "daisy.jpg",
+            "daisy.jpg",
+            "daisy.jpg"
         ],
         "product_name": "Daisy Bouquette",
         "original_price": 90,
@@ -93,9 +93,9 @@
             "$oid": "662764f834a9ab89e2745d8c"
         },
         "product_image": [
-            "/snack.jpg",
-            "/snack.jpg",
-            "/snack.jpg"
+            "snack.jpg",
+            "snack.jpg",
+            "snack.jpg"
         ],
         "product_name": "Snack Bouquette",
         "original_price": 35,
@@ -111,9 +111,9 @@
             "$oid": "662764f834a9ab19e2445d8c"
         },
         "product_image": [
-            "/succulent.jpg",
-            "/succulent.jpg",
-            "/succulent.jpg"
+            "succulent.jpg",
+            "succulent.jpg",
+            "succulent.jpg"
         ],
         "product_name": "Succulent Bouquette",
         "original_price": 25,
@@ -129,9 +129,9 @@
             "$oid": "662764f834c9ab89e2445d8c"
         },
         "product_image": [
-            "/chocolate.jpg",
-            "/chocolate.jpg",
-            "/chocolate.jpg"
+            "chocolate.jpg",
+            "chocolate.jpg",
+            "chocolate.jpg"
         ],
         "product_name": "Chocolate Bouquette",
         "original_price": 60,
@@ -147,9 +147,9 @@
             "$oid": "662764f834p9ab89e2445d8c"
         },
         "product_image": [
-            "/book.jpg",
-            "/book.jpg",
-            "/book.jpg"
+            "book.jpg",
+            "book.jpg",
+            "book.jpg"
         ],
         "product_name": "Book Bouquette",
         "original_price": 75,
@@ -165,9 +165,9 @@
             "$oid": "662764f834a9ab89e2825d8c"
         },
         "product_image": [
-            "/fruit.jpg",
-            "/fruit.jpg",
-            "/fruit.jpg"
+            "fruit.jpg",
+            "fruit.jpg",
+            "fruit.jpg"
         ],
         "product_name": "Fruit Bouquette",
         "original_price": 30,
@@ -183,9 +183,9 @@
             "$oid": "662764f834a9ab89e2995d8c"
         },
         "product_image": [
-            "/jasmine.jpg",
-            "/jasmine.jpg",
-            "/jasmine.jpg"
+            "jasmine.jpg",
+            "jasmine.jpg",
+            "jasmine.jpg"
         ],
         "product_name": "Jasmine Bouquette",
         "original_price": 90,
@@ -201,9 +201,9 @@
             "$oid": "662764f834a9ab89e1045d8c"
         },
         "product_image": [
-            "/candle.jpg",
-            "/candle.jpg",
-            "/candle.jpg"
+            "candle.jpg",
+            "candle.jpg",
+            "candle.jpg"
         ],
         "product_name": "Aromatic Candles Bouquette",
         "original_price": 25,
