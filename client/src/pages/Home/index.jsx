@@ -29,13 +29,13 @@ const Home = () => {
             title="Shop by Category" 
             products={products} 
             links={[
-                { path: "/products", label: "View All" },
-                { path: "/products/birthday", label: "Birthday" },
-                { path: "/products/anniversary", label: "Anniversary" },
-                { path: "/products/valentine", label: "Valentine" },
-                { path: "/products/in-memorial", label: "In Memorial" },
-                { path: "/products/for-gift", label: "For Gift" },
-                { path: "/products/promo", label: "Promo" }
+                { path: "/browse", label: "View All" },
+                { path: "/browse/birthday", label: "Birthday" },
+                { path: "/browse/anniversary", label: "Anniversary" },
+                { path: "/browse/valentine", label: "Valentine" },
+                { path: "/browse/in-memorial", label: "In Memorial" },
+                { path: "/browse/for-gift", label: "For Gift" },
+                { path: "/browse/promo", label: "Promo" }
             ]}
         />
 

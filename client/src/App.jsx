@@ -15,7 +15,7 @@ function App() {
       <Sidebar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/browse/:category" element={<Browse />} />
+        <Route path="/browse/:category?" element={<Browse />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/payment" element={<Payment />} />

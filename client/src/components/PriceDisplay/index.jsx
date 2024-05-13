@@ -1,7 +1,5 @@
 const PriceDisplay = ({ product }) => {
 
-
-
   return (
     <div className="price" style={{display: 'flex', gap:'0.25rem'}}>
       {product.discount > 0 ? (
