@@ -8,7 +8,7 @@ import { Header } from './components/index.js'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter 
-    // basename='/florist/'
+    // basename='/florist'
     >
       <Header />
       <App />

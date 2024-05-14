@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for programmatically navigation
+import { Link, useNavigate } from 'react-router-dom';
 import './style.scss';
 import searchSvg from '../../assets/search.svg';
 import logo from '../../assets/logo.png';
-import products from '../../dummy/product.json';  // Make sure the path is correct
+import products from '../../dummy/product.json'; 
 
 const Header = () => {
     const [isActive, setIsActive] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [openCart, setOpenCart] = useState(false);
     const [searchInput, setSearchInput] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [showSearchOverlay, setShowSearchOverlay] = useState(false);
     const headerRef = useRef(null);
-    const navigate = useNavigate(); // Hook for navigation
+    const navigate = useNavigate();
 
     const handleImageError = (e) => {
         e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
@@ -19,6 +21,14 @@ const Header = () => {
 
     const toggleClassActive = () => {
         setIsActive(!isActive);
+    }
+
+    const toggleClassOpen = () => {
+        setIsOpen(!isOpen);
+    }
+
+    const toggleCartOpen = () => {
+        setOpenCart(!openCart);
     }
 
     useEffect(() => {
@@ -72,10 +82,33 @@ const Header = () => {
                     <Link to="/payment">Brand</Link>
                 </div>
                 <div className="right">
-                    <p>Wish list (0)</p>
-                    <p>$AUD</p>
-                    <p>English</p>
-                    <p>Edoyang</p>
+                    <div className="user-button" onClick={toggleClassOpen}>
+                        <p>Wish list (0)</p>
+                    </div>
+                    <div className="user-button" onClick={toggleClassOpen}>
+                        <p>$AUD</p>
+
+                        <div className={`user-overlay ${isOpen ? 'active' : ''}`}>
+                            <p>$AUD</p>
+                            <p>$IDR</p>
+                        </div>
+                    </div>
+                    <div className="user-button" onClick={toggleClassOpen}>
+                        <p>English</p>
+
+                        <div className={`user-overlay ${isOpen ? 'active' : ''}`}>
+                            <p>English</p>
+                        </div>
+                    </div>
+                    <div className="user-button" onClick={toggleClassOpen}>
+                        <p>Edoyang</p>
+
+                        <div className={`user-overlay ${isOpen ? 'active' : ''}`}>
+                            <Link to="/account">Account</Link>
+                            <Link to="/order">Order history</Link>
+                            <Link to="/logout">Logout</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="main-header">
@@ -105,13 +138,22 @@ const Header = () => {
                     <div className="logo">
                     <Link to="/"><img src={logo} alt="Logo" /></Link>
                     </div>
-                    <div className="cart-icon">
-                        <i className="fas fa-shopping-cart"></i>
-                        <div className="cart-list">
-                            <p>Your shopping cart is empty</p>
-                        </div>
+                    <div className={`cart-list ${openCart ? 'active' : ''}`}>
+                        <p>Your shopping cart is empty</p>
+
+                        {/* <div className="item">
+                            <div className="image">
+                                <img src="https://via.placeholder.com/150" alt="Product" />
+                            </div>
+                            <div className="detail">
+                                <p>Product Name</p>
+                                <p>Price</p>
+                            </div>
+                            <button>x</button>
+                        </div> */}
+                        
                     </div>
-                    <div className="cart-detail">
+                    <div className="cart-detail" onClick={toggleCartOpen}>
                         <p>0 Items</p>
                         <p>$0.00</p>
                     </div>

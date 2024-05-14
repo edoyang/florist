@@ -19,12 +19,12 @@ const Category = () => {
   };
 
   const slugToSpace = (categoryName) => {
-    return categoryName.replace(/-/g, ' ');
+    return categoryName.replace(/-/g, '');
   };
 
   const getImageSrc = (categoryName) => {
     const slug = generateSlug(categoryName);
-    return `${slug}.svg`;
+    return `/${slug}.svg`;
   };
 
   return (
