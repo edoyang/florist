@@ -37,6 +37,7 @@ const Category = () => {
         {categories.map((category, index) => (
           <Link to={`/browse/${generateSlug(category)}`} className="label" key={index}>
             <img draggable="false" src={getImageSrc(category)} alt={category} />
+            {/* <img draggable="false" src={`./${getImageSrc(category)}`} alt={category} /> */}
             <p>{slugToSpace(category)}</p>
           </Link>
         ))}
