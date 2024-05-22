@@ -1,0 +1,46 @@
+.products-page{
+    
+    .products-page-title{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .products-list{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+        .product{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            .product-image{
+                width: 100%;
+                height: 200px;
+                overflow: hidden;
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .product-actions{
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                .buttons{
+                    display: none;
+                    flex-direction: column;
+
+                    >button{
+                        height: 30px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
