@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import './style.scss'
 
 const Register = () => {
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -39,24 +41,24 @@ const Register = () => {
   };
 
   return (
-    <div className="register-page">
-      <form className="register-form" onSubmit={handleSubmit}>
+    <div className="register-page page">
+      <form className="register-form user-form" onSubmit={handleSubmit}>
         <h2>Register</h2>
         <div className="input-group">
           <label htmlFor="username">Username</label>
-          <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} />
+          <input type="text" id="username" name="username" placeholder='Insert username' value={formData.username} onChange={handleChange} />
         </div>
         <div className="input-group">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+          <input type="email" id="email" name="email" placeholder='Email address' value={formData.email} onChange={handleChange} />
         </div>
         <div className="input-group">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} />
+          <input type="password" id="password" name="password" placeholder='Password' value={formData.password} onChange={handleChange} />
         </div>
         <div className="input-group">
           <label htmlFor="confirmPassword">Confirm Password</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder='Confirm password' value={formData.confirmPassword} onChange={handleChange} />
         </div>
         <button type="submit">Register</button>
       </form>

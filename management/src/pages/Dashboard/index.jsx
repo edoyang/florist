@@ -1,8 +1,9 @@
 import React from 'react'
+import './style.scss'
 
 const Dashboard = () => {
   return (
-    <div className='dashboard'>
+    <div className='dashboard page'>
         <div className="dashboard-title">
             <h1>Dashboard</h1>
             <p>Oct 11, 2023 - Nov 2022</p>
@@ -51,83 +52,63 @@ const Dashboard = () => {
                 </div>
                 <div className="best-sellers-list">
                     <div className="best-sellers-item">
-                        <h1>Product 1</h1>
+                        <img src="/" alt="no-image" />
+                        <h3>Product 1</h3>
                         <p>1,000 sold</p>
                     </div>
                     <div className="best-sellers-item">
-                        <h1>Product 2</h1>
+                        <img src="/" alt="no-image" />
+                        <h3>Product 2</h3>
                         <p>1,000 sold</p>
                     </div>
                     <div className="best-sellers-item">
-                        <h1>Product 3</h1>
+                        <img src="/" alt="no-image" />
+                        <h3>Product 3</h3>
                         <p>1,000 sold</p>
                     </div>
                     <div className="best-sellers-item">
-                        <h1>Product 4</h1>
+                        <img src="/" alt="no-image" />
+                        <h3>Product 4</h3>
                         <p>1,000 sold</p>
                     </div>
                     <div className="best-sellers-item">
-                        <h1>Product 5</h1>
+                        <img src="/" alt="no-image" />
+                        <h3>Product 5</h3>
                         <p>1,000 sold</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div className="dashboard-recent">
-            <div className="recent-orders">
-                <div className="recent-orders-title">
-                    <h1>Recent Orders</h1>
-                </div>
-                <div className="recent-orders-list">
-                    <div className="recent-orders-item">
-                        <h1>Order 1</h1>
-                        <p>1,000 sold</p>
-                    </div>
-                    <div className="recent-orders-item">
-                        <h1>Order 2</h1>
-                        <p>1,000 sold</p>
-                    </div>
-                    <div className="recent-orders-item">
-                        <h1>Order 3</h1>
-                        <p>1,000 sold</p>
-                    </div>
-                    <div className="recent-orders-item">
-                        <h1>Order 4</h1>
-                        <p>1,000 sold</p>
-                    </div>
-                    <div className="recent-orders-item">
-                        <h1>Order 5</h1>
-                        <p>1,000 sold</p>
-                    </div>
-                </div>
+        <div className="recent-orders">
+            <div className="recent-orders-title">
+                <h1>Recent Orders</h1>
             </div>
-
-            <div className="recent-reviews">
-                <div className="recent-reviews-title">
-                    <h1>Recent Reviews</h1>
+            <div className="recent-orders-list">
+                <div className="recent-orders-item">
+                    <img src="" alt="np-image" />
+                    <h3>Order 1</h3>
+                    <p>1,000 sold</p>
                 </div>
-                <div className="recent-reviews-list">
-                    <div className="recent-reviews-item">
-                        <h1>Review 1</h1>
-                        <p>1,000 sold</p>
-                    </div>
-                    <div className="recent-reviews-item">
-                        <h1>Review 2</h1>
-                        <p>1,000 sold</p>
-                    </div>
-                    <div className="recent-reviews-item">
-                        <h1>Review 3</h1>
-                        <p>1,000 sold</p>
-                    </div>
-                    <div className="recent-reviews-item">
-                        <h1>Review 4</h1>
-                        <p>1,000 sold</p>
-                    </div>
-                    <div className="recent-reviews-item">
-                        <h1>Review 5</h1>
-                        <p>1,000 sold</p>
-                    </div>
+                <div className="recent-orders-item">
+                    <img src="" alt="np-image" />
+                    <h3>Order 2</h3>
+                    <p>1,000 sold</p>
+                </div>
+                <div className="recent-orders-item">
+                    <img src="" alt="np-image" />
+                    <h3>Order 3</h3>
+                    <p>1,000 sold</p>
+                </div>
+                <div className="recent-orders-item">
+                    <img src="" alt="np-image" />
+                    <h3>Order 4</h3>
+                    <p>1,000 sold</p>
+                </div>
+                <div className="recent-orders-item">
+                    <img src="" alt="np-image" />
+                    <h3>Order 5</h3>
+                    <p>1,000 sold</p>
                 </div>
             </div>
         </div>

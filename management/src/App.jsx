@@ -6,6 +6,7 @@ function App() {
 
   return (
     <>
+    <div className="content">
       <div className="sidebar">
         <div className="logo">
           <h1>Management</h1>
@@ -19,15 +20,16 @@ function App() {
         </div>
       </div>
 
-    <Routes>
-      <Route path="/" element={<Register />} />  
-      <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/orders" element={<Orders />} />
-      <Route path="add-product" element={<AddProduct />} />
-
-    </Routes>
+      <Routes className='routes'>
+        <Route path="/" element={<Register />} />  
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/edit-product/:id" element={<AddProduct />} />
+      </Routes>
+    </div>
     </>
   )
 }

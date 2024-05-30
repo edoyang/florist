@@ -1,5 +1,5 @@
 .add-product-page{
-
+    width: 100%;
     padding: 1rem;
 
     form{
@@ -11,39 +11,6 @@
             > .original-price {
                 display: flex;
                 flex-direction: column;
-
-                .toggle-button {
-                    margin: 0;
-                    width: 50px;
-                    height: 25px;
-                    background-color: #d2d2d2;
-                    border-radius: 50px;
-                    position: relative;
-                    cursor: pointer;
-
-                    &::before {
-                        content: "";
-                        position: absolute;
-                        width: 20px;
-                        height: 20px;
-                        margin: 2.5px;
-                        background-color: white;
-                        border-radius: 50%;
-                        transition: 0.2s;
-                    }
-                }
-
-                input[type="checkbox"] {
-                    display: none;
-                    
-                    &:checked + .toggle-button {
-                        background-color: #2196F3;
-                    }
-
-                    &:checked + .toggle-button::before {
-                        transform: translateX(25px);
-                    }
-                }
             }
         }
 
@@ -53,10 +20,11 @@
             gap: 1rem;
             max-width: 350px;
             overflow: hidden;
+            height: max-content;
 
             .image-preview{
                 width: 350px;
-                height: 250px;
+                
 
                 img{
                     width: 100%;

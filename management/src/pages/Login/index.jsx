@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './style.scss'
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -36,8 +37,8 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <form className="login-form" onSubmit={handleSubmit}>
+    <div className="login-page page">
+      <form className="login-form user-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="input-group">
           <label htmlFor="email">Email</label>
