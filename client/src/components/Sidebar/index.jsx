@@ -1,11 +1,28 @@
 import { Carousel } from '..'
 import CarouselButtons from '../CarouselButtons'
-import productData from '../../dummy/product.json'
-{/* const productData = fetch('http://localhost:5000/api/products').then(res => res.json()); */}
+// import productData from '../../dummy/product.json'
 import './style.scss'
 import Category from '../Category'
+import { useEffect, useState } from 'react'
 
 const Sidebar = () => {
+  const [productData, setProductData] = useState([]); 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // CHANGE UPON DEPLOYMENT
+        const response = await fetch('http://localhost:3000/products');
+        const data = await response.json();
+        setProductData(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="sidebar">
         <Category />

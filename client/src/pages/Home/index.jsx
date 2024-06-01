@@ -1,10 +1,29 @@
 import Hero from "../../components/Hero";
 import "./style.scss";
-import products from "../../dummy/product.json";
+// import products from "../../dummy/product.json";
 import CarouselV2 from "../../components/CarouselV2";
+import { useEffect, useState } from "react";
 
 
 const Home = () => {
+
+    const [products, setProductData] = useState([]); 
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          // CHANGE UPON DEPLOYMENT
+          const response = await fetch('http://localhost:3000/products');
+          const data = await response.json();
+          setProductData(data);
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+
     const sliderItems = [
         { link: "/product/1", imageUrl: "https://via.placeholder.com/600x300?text=Image+1" },
         { link: "/product/2", imageUrl: "https://via.placeholder.com/600x300?text=Image+2" },

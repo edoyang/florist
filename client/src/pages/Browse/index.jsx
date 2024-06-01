@@ -12,20 +12,20 @@ const Browse = () => {
   const [products, setProducts] = useState([]);
   const { category } = useParams();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const fileName = category ? `product-${category}.json` : 'product.json';
-  //     try {
-  //       const response = await fetch(`/dummy/products/${fileName}`);
-  //       const data = await response.json();
-  //       setProducts(data);
-  //     } catch (error) {
-  //       console.error('Failed to fetch products', error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      const fileName = category ? `product-${category}.json` : 'product.json';
+      try {
+        const response = await fetch(`http://localhost:3000/products/${fileName}`);
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Failed to fetch products', error);
+      }
+    };
 
-  //   fetchData();
-  // }, [category]);
+    fetchData();
+  }, [category]);
 
   useEffect(() => {
     if (category) {
@@ -73,7 +73,7 @@ const Browse = () => {
 
       <div className={`listing ${layout}`}>
         {products.map((product, index) => (
-          <Link to={`/product/${product._id.$oid}`} key={index} className="item">
+          <Link to={`/product/${product._id}`} key={index} className="item">
             <div className="item-image">
               <img onError={handleImageError} src={product.product_image[0]} alt={product.product_name} />
               <div className="buttons">

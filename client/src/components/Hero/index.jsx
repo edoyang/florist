@@ -43,7 +43,7 @@ function Slider({ items }) {
             scrollRight();
           }
         }
-      }, 1500);
+      }, 5000);
     }
   };
 

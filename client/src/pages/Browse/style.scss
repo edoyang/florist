@@ -101,7 +101,28 @@
         grid-template-columns: repeat(auto-fill, minmax(200px, auto));
         padding: 1rem;
 
+        @media screen and (max-width: 498px){
+        grid-template-columns: repeat(auto-fill, minmax(150px, auto));
+        }
+
+        @media screen and (max-width: 398px){
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .item{
+                width: max-content;
+            }
+            
+        }
+
         .item{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
             .item-image{
                 .buttons{
                     position: absolute;

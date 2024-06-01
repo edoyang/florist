@@ -41,6 +41,56 @@ exports.getProducts = async (req, res) => {
     }
 };
 
+
+exports.updateProduct = async (req, res) => {
+    try {
+        const { product_name, original_price, price, category, stocks, discount, isActive } = req.body;
+        const product = await Product.findById(req.params.id);
+
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+
+        // Updating the product details
+        product.product_name = product_name;
+        product.original_price = original_price;
+        product.price = price;
+        product.category = JSON.parse(category);  // Assuming category comes as a JSON string array
+        product.stocks = parseInt(stocks, 10);
+        product.discount = discount;
+        product.isActive = isActive;
+
+        // Handle images update if there are new images uploaded
+        if (req.files && req.files.length > 0) {
+            const product_images = req.files.map(file => file.path);
+
+            // Optional: Delete old images from Cloudinary
+            product.product_image.forEach(async oldImage => {
+                try {
+                    await cloudinary.uploader.destroy(oldImage);
+                } catch (error) {
+                    console.error('Failed to delete old image from Cloudinary:', error);
+                }
+            });
+
+            // Set new images
+            product.product_image = product_images;
+        }
+
+        await product.save();
+        res.status(200).json({
+            message: 'Product updated successfully!',
+            data: product
+        });
+    } catch (error) {
+        console.error('Failed to update product:', error);
+        res.status(500).json({
+            message: 'Failed to update product',
+            error: error.message
+        });
+    }
+};
+
 exports.getProductsManagement = async (req, res) => {
   try {
       const products = await Product.find(); // Fetches all products

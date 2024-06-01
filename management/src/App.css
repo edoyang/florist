@@ -116,3 +116,35 @@ input[type="checkbox"]:checked + .toggle-button {
 input[type="checkbox"]:checked + .toggle-button::before {
     transform: translateX(25px);
 }
+
+.category-button {
+    border: 1px solid white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    user-select: none;
+}
+
+input[type="checkbox"]:checked + .category-button {
+    transition: 0.2s ease-in-out;
+}
+
+input[type="checkbox"]:checked + .birthday{
+    background-color: #C40C0C;
+}
+
+input[type="checkbox"]:checked + .anniversary{
+    background-color: #8644A2;
+}
+
+input[type="checkbox"]:checked + .valentine{
+    background-color: #D2649A;
+}
+
+input[type="checkbox"]:checked + .gift{
+    background-color: #008DDA;
+}
+
+input[type="checkbox"]:checked + .memorial{
+    background-color: #032D3C;
+}

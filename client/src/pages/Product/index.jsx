@@ -2,23 +2,35 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CarouselV2 from "../../components/CarouselV2";
 import PriceDisplay from "../../components/PriceDisplay";
-import products from "../../dummy/product.json";
 import "./style.scss";
 
 const Product = () => {
-  const { id } = useParams(); // This 'id' is expected to be a string matching MongoDB's ObjectId
-  const product = products.find(p => p._id.$oid === id); // Use _id.$oid to find the product
+  const [products, setProductData] = useState([]);
+  const [product, setProduct] = useState(null);
+  const [mainImage, setMainImage] = useState('');
+  const [quantity, setQuantity] = useState(1);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/products');
+        const data = await response.json();
+        setProductData(data);
+        const foundProduct = data.find(p => p._id === id);
+        setProduct(foundProduct);
+        setMainImage(foundProduct ? foundProduct.product_image[0] : '');
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+    fetchData();
+  }, [id]);
 
   if (!product) {
     return <div>Product not found</div>;
   }
-
-  const [mainImage, setMainImage] = useState(product.product_image[0]);
-  const [quantity, setQuantity] = useState(1);
-
-  useEffect(() => {
-    setMainImage(product.product_image[0]);
-  }, [product]);
 
   const handleImageError = (e) => {
     e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
@@ -35,19 +47,6 @@ const Product = () => {
   const decrementQuantity = () => {
     setQuantity(prevQuantity => prevQuantity > 1 ? prevQuantity - 1 : 1);
   };
-
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const elementId = hash.replace("#", "");
-      const element = document.getElementById(elementId);
-      if (element) {
-        const yOffset = -250;
-        const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-        window.scrollTo({ top: y });
-      }
-    }
-  }, [product]);
 
   return (
     <div id="product-page" className="product-page">
@@ -89,8 +88,7 @@ const Product = () => {
           <button type="submit">Add to Cart</button>
         </form>
       </div>
-      
-      <CarouselV2 products={products.filter(p => p.category.includes('Birthday'))} title="Related Products" links={[]} />
+      <CarouselV2 products={products.filter(p => p.category.some(cat => product.category.includes(cat)))} title="Related Products" links={[]} />
     </div>
   );
 };

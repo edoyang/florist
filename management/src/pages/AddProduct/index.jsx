@@ -25,7 +25,6 @@ const AddProduct = () => {
                     setName(product.product_name || '');
                     setOriginalPrice(product.original_price || '');
                     setPrice(product.price || '');
-                    setCategory(Array.isArray(product.category) ? product.category.join(', ') : product.category || '');
                     setStocks(product.stocks || 0);
                     setDiscountState(product.discount > 0);
                     setDiscount(product.discount || 0);
@@ -35,13 +34,39 @@ const AddProduct = () => {
                         name: img,
                         url: img
                     })));
+                    // Update categories based on the product data
+                    const productCategories = product.category || [];
+                    const updatedCategories = {...categories};
+                    Object.keys(categories).forEach(category => {
+                        updatedCategories[category] = productCategories.includes(category);
+                    });
+                    setCategories(updatedCategories);
                 })
                 .catch(error => console.error('Error fetching product:', error));
         }
     }, [id, isEditMode]);
+    
+
+    const [categories, setCategories] = useState({
+        birthday: false,
+        anniversary: false,
+        valentine: false,
+        gift: false,
+        memorial: false
+    });
+
+    const handleCategoryChange = (event) => {
+        const { name, checked } = event.target;
+        setCategories(prev => ({
+            ...prev,
+            [name]: checked
+        }));
+    };
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const selectedCategories = Object.keys(categories).filter(key => categories[key]);
         const formData = new FormData();
         images.forEach(image => {
             if (image.file) {
@@ -52,7 +77,7 @@ const AddProduct = () => {
         formData.append('original_price', originalPrice);
         formData.append('price', price);
         formData.append('stocks', stocks);
-        formData.append('category', category);
+        formData.append('category', JSON.stringify(selectedCategories));
         formData.append('discount', discount);
         formData.append('isActive', activeState);
 
@@ -171,10 +196,25 @@ const AddProduct = () => {
                         <input required type="number" id="price" name="price" value={price} onChange={handlePriceChange} disabled={!discountState} />
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="category">Category</label>
-                        <input required type="text" id="category" name="category" value={category} onChange={(e) => setCategory(e.target.value)} />
+                    <div className="form-group category">
+                        <label>Category</label>
+                        <div className="categories">
+                            {Object.keys(categories).map((category, index) => (
+                                <React.Fragment key={index}>
+                                    <input 
+                                        type="checkbox" 
+                                        id={category} 
+                                        name={category} 
+                                        value={category} 
+                                        checked={categories[category]} 
+                                        onChange={handleCategoryChange} 
+                                    />
+                                    <label className={`category-button ${category}`} htmlFor={category}>{category.charAt(0).toUpperCase() + category.slice(1)}</label>
+                                </React.Fragment>
+                            ))}
+                        </div>
                     </div>
+
 
                     <div className="form-group">
                         <label htmlFor="stocks">Stocks</label>
