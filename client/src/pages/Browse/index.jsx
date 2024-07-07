@@ -4,19 +4,20 @@ import ReviewStar from "../../components/ReviewStar";
 import categorySvg from "../../assets/category-dark.svg";
 import gridSvg from "../../assets/grid.svg";
 import "./style.scss";
-import allProducts from "../../dummy/product.json";
-import anniversary from "../../dummy/product-anniversary.json";
 import PriceDisplay from "../../components/PriceDisplay";
 
 const Browse = () => {
   const [products, setProducts] = useState([]);
   const { category } = useParams();
-
+  
   useEffect(() => {
     const fetchData = async () => {
-      const fileName = category ? `product-${category}.json` : 'product.json';
+      const endpoint = category ? `${category}` : '';
       try {
-        const response = await fetch(`http://localhost:3000/products/${fileName}`);
+        const response = await fetch(`http://localhost:3000/products`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -27,18 +28,6 @@ const Browse = () => {
     fetchData();
   }, [category]);
 
-  useEffect(() => {
-    if (category) {
-      const filteredProducts = allProducts.filter(product =>
-        product.category.map(cat => cat.toLowerCase()).includes(category.toLowerCase())
-      );
-      setProducts(filteredProducts);
-    } else {
-      setProducts(allProducts);
-    }
-  }, [category]);
-  
-  
   const [layout, setLayout] = useState('grid');
 
   const handleLayoutChange = (layoutType) => {
@@ -56,7 +45,7 @@ const Browse = () => {
           <div onClick={() => handleLayoutChange('flex')} className="image-container">
             <img src={categorySvg} alt="list" />
           </div>
-          <div onClick={() => handleLayoutChange('grid')}  className="image-container">
+          <div onClick={() => handleLayoutChange('grid')} className="image-container">
             <img src={gridSvg} alt="grid" />
           </div>
         </div>

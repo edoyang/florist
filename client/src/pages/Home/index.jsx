@@ -25,10 +25,8 @@ const Home = () => {
     }, []);
 
     const sliderItems = [
-        { link: "/product/1", imageUrl: "https://via.placeholder.com/600x300?text=Image+1" },
-        { link: "/product/2", imageUrl: "https://via.placeholder.com/600x300?text=Image+2" },
-        { link: "/product/3", imageUrl: "https://via.placeholder.com/600x300?text=Image+3" },
-        { link: "/product/4", imageUrl: "https://via.placeholder.com/600x300?text=Image+4" },
+        { link: "/product/6689ef442d02cfb0f02f5c8a#product-page", imageUrl: "hero1.jpg"},
+        { link: "/product/6689fc9c1cda2bd306e476d4#product-page", imageUrl: "hero2.jpg" },
         { link: "/product/5", imageUrl: "https://via.placeholder.com/600x300?text=Image+5" }
       ];
 
@@ -39,8 +37,8 @@ const Home = () => {
 
         <div className="promo-banner">
             <div className="container">
-                <img draggable={false} src="https://via.placeholder.com/600x300?text=Image+1" alt="image1" />
-                <img draggable={false} src="https://via.placeholder.com/600x300?text=Image+2" alt="image2" />
+                <img draggable={false} src="promo_one.jpg" alt="image1" />
+                <img draggable={false} src="promo_two.jpg" alt="image2" />
             </div>
         </div>
 
@@ -65,7 +63,7 @@ const Home = () => {
         />
 
         <div className="banner">
-            <img src="https://via.placeholder.com/1600x400" draggable={false} alt="banner" />
+            <img src="promo-end.jpg" draggable={false} alt="banner" />
         </div>
 
         <CarouselV2 

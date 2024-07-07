@@ -1,7 +1,32 @@
-import React from 'react'
-import './style.scss'
+import React, { useState, useEffect } from 'react';
+import './style.scss';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
+  const [totalProduct, setTotalProduct] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTotalProduct = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get('http://localhost:3000/totalProduct');
+        setTotalProduct(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchTotalProduct();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div className='dashboard page'>
         <div className="dashboard-title">
@@ -24,7 +49,7 @@ const Dashboard = () => {
             </div>
             <div className="card">
                 <h1>Products</h1>
-                <p>1,000</p>
+                <p>{totalProduct}</p>
             </div>
         </div>
 
@@ -116,4 +141,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Dashboard;

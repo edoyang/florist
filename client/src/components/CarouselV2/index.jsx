@@ -72,7 +72,7 @@ const CarouselV2 = ({ title, products, links }) => {
       </div>
       <div ref={carouselRef} className="carousel-2-container">
           {products.map(product => (
-            <Link to={`/product/${product._id.$oid}#product-page`} key={product._id.$oid} className="item">
+            <Link to={`/product/${product._id}#product-page`} key={product._id} className="item">
                   <div className="image">
                       <img draggable={false} 
                         src={product.product_image[0]} 

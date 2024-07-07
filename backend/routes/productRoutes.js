@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { addProduct, getProducts, getProduct, deleteProduct, getProductsManagement, updateProduct } = require('../controllers/productController');
+const { addProduct } = require('../controllers/productController/post');
+const { getProducts, getProductsManagement, getTotalProduct } = require('../controllers/productController/get');
+const { deleteProduct } = require('../controllers/productController/delete');
 const multer = require('multer');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const cloudinary = require('cloudinary').v2;
@@ -18,10 +20,7 @@ const productImageParser = multer({ storage: storage });
 router.post('/add-product', productImageParser.array('product_image', 3), addProduct);
 router.get('/products', getProducts);
 router.get('/productsManagement', getProductsManagement);
-router.get('/product/:id', getProduct);
-router.delete('/product/:id', deleteProduct);
-router.put('/products/:id', productImageParser.array('product_image', 3), updateProduct);
-
-
+router.get('/totalProduct', getTotalProduct);
+router.delete('/delete-product/:productId', deleteProduct); 
 
 module.exports = router;

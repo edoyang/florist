@@ -26,10 +26,12 @@ const Products = () => {
 
   const deleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/product/${id}`);
+      await axios.delete(`http://localhost:3000/delete-product/${id}`);
       setProducts(products.filter(product => product._id !== id));
+      alert('Product deleted')
     } catch (error) {
       console.error('Failed to delete the product', error);
+      setError('Failed to delete the product');
     }
   };
 
@@ -42,7 +44,9 @@ const Products = () => {
         <div className="page-title">
           <h1>Products</h1>
         </div>
-        <button id="add-product" className='btn-primary'><Link to="/add-product">Add Product</Link></button>
+        <button id="add-product" className='btn-primary'>
+          <Link to="/add-product">Add Product</Link>
+        </button>
       </div>
 
       <div className="products-list">
@@ -50,13 +54,6 @@ const Products = () => {
           <div key={product._id} className="product">
             <div className="product-image">
               <img src={product.product_image[0]} alt={product.product_name} />
-            </div>
-            <div className="product-info">
-              <h1>{product.product_name}</h1>
-              <p>Price: ${product.price}</p>
-              <p>Stock: {product.stocks}</p>
-            </div>
-            <div className="product-actions">
               <div className="buttons flex">
                 <Link to={`/edit-product/${product._id}`}>
                   <button className="btn-primary">Edit</button>
@@ -64,12 +61,16 @@ const Products = () => {
                 <button className="btn-danger" onClick={() => deleteProduct(product._id)}>Delete</button>
               </div>
             </div>
+            <div className="product-info">
+              <h1>{product.product_name}</h1>
+              <p>Price: ${product.price}</p>
+              <p>Stock: {product.stocks}</p>
+            </div>
           </div>
         ))}
       </div>
-
     </div>
   );
-}
+};
 
 export default Products;

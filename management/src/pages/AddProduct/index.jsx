@@ -77,20 +77,24 @@ const AddProduct = () => {
         formData.append('original_price', originalPrice);
         formData.append('price', price);
         formData.append('stocks', stocks);
-        formData.append('category', JSON.stringify(selectedCategories));
+        selectedCategories.forEach(category => {
+            formData.append('category', category); // Append each category as a separate entry
+        });
         formData.append('discount', discount);
         formData.append('isActive', activeState);
-
+    
         try {
             const config = { headers: { 'Content-Type': 'multipart/form-data' } };
             const response = isEditMode ?
                 await axios.put(`http://localhost:3000/products/${id}`, formData, config) :
                 await axios.post('http://localhost:3000/add-product', formData, config);
             console.log(`${isEditMode ? 'Product updated' : 'Product added'}:`, response.data);
+            alert(`${isEditMode ? 'Product updated' : 'Product added'} successfully!`);
         } catch (error) {
             console.error(`Error ${isEditMode ? 'updating' : 'adding'} product:`, error);
         }
     };
+    
 
     const handleDiscountToggle = (e) => {
         const checked = e.target.checked;

@@ -26,8 +26,14 @@
     height: max-content;
 }
 
-.sidebar a{
+.sidebar a, .sidebar button{
     text-decoration: none;
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    cursor: pointer;
 }
 
 .sidebar .menu{
@@ -97,9 +103,10 @@
 .toggle-button::before {
     content: "";
     position: absolute;
-    width: 20px;
-    height: 20px;
-    margin: 2.5px;
+    width: 19px;
+    height: 19px;
+    left: 3px;
+    top: 3px;
     background-color: white;
     border-radius: 50%;
     transition: 0.2s;
@@ -125,8 +132,14 @@ input[type="checkbox"]:checked + .toggle-button::before {
     user-select: none;
 }
 
-input[type="checkbox"]:checked + .category-button {
-    transition: 0.2s ease-in-out;
+input[type="checkbox"] + label {
+    transition: 0.15s ease-in-out;
+    background-color: transparent;
+}
+
+input[type="checkbox"] + .toggle-button {
+    transition: 0.1s ease-in-out;
+    background-color: #ccc;
 }
 
 input[type="checkbox"]:checked + .birthday{
@@ -139,6 +152,10 @@ input[type="checkbox"]:checked + .anniversary{
 
 input[type="checkbox"]:checked + .valentine{
     background-color: #D2649A;
+}
+
+input[type="checkbox"]:checked + .graduation{
+    background-color: #aac83a;
 }
 
 input[type="checkbox"]:checked + .gift{

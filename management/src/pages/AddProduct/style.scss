@@ -1,170 +1,204 @@
-.add-product-page{
-    width: 100%;
-    padding: 1rem;
+// .error-message{
+//     color: #000;
+//     font-size: 1.5rem;
+//     margin-top: 0.5rem;
+//     position: absolute;
+//     background-color: white;
+//     width: 80vw;
+//     height: 100px;
+//     z-index: 3;
+//     top: 0;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     border-radius: 4px;
+//     opacity: 0.5;
+//     animation: error-message 4s forwards;
+//     transition: all 0.5s;
 
-    form{
+//     @keyframes error-message{
+//         0%{
+//             opacity: 0;
+//             display: flex;
+//         }
+//         50%{
+//             opacity: 1;
+//             transform: translateY(0);
+//         }
+//         75%, 100%{
+//             opacity: 0;
+//             transform: translateY(-100%);
+//         }
+//     }
+// }
 
-        >.left{
-            display: flex;
-            flex-direction: column;
+// .add-product-page{
+//     width: 100%;
+//     padding: 1rem;
 
-            > .original-price {
-                display: flex;
-                flex-direction: column;
-            }
-        }
+//     form{
 
-        .right{
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            max-width: 350px;
-            overflow: hidden;
-            height: max-content;
+//         >.left{
+//             display: flex;
+//             flex-direction: column;
 
-            .image-preview{
-                width: 350px;
+//             > .original-price {
+//                 display: flex;
+//                 flex-direction: column;
+//             }
+//         }
+
+//         .right{
+//             display: flex;
+//             flex-direction: column;
+//             gap: 1rem;
+//             max-width: 350px;
+//             overflow: hidden;
+//             height: max-content;
+
+//             .image-preview{
+//                 width: 350px;
                 
 
-                img{
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
+//                 img{
+//                     width: 100%;
+//                     height: 100%;
+//                     object-fit: cover;
+//                 }
 
-                .loading{
-                    background-color: gray;
-                    width: 100%;
-                    height: 100%;
-                    animation: loading 2s infinite;
+//                 .loading{
+//                     background-color: gray;
+//                     width: 100%;
+//                     height: 100%;
+//                     animation: loading 2s infinite;
 
-                    @keyframes loading{
-                        0%{
-                            opacity: 0.3;
-                        }
-                        50%{
-                            opacity: 1;
-                        }
-                        100%{
-                            opacity: 0.3;
-                        }
-                    }
-                }
-            }
+//                     @keyframes loading{
+//                         0%{
+//                             opacity: 0.3;
+//                         }
+//                         50%{
+//                             opacity: 1;
+//                         }
+//                         100%{
+//                             opacity: 0.3;
+//                         }
+//                     }
+//                 }
+//             }
 
-            .image-drop{
-                width: 350px;
-                >label{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 350px;
-                    height: 150px;
-                    border: 2px dashed #d2d2d2;
-                    border-radius: 10px;
-                    cursor: pointer;
+//             .image-drop{
+//                 width: 350px;
+//                 >label{
+//                     display: flex;
+//                     justify-content: center;
+//                     align-items: center;
+//                     width: 350px;
+//                     height: 150px;
+//                     border: 2px dashed #d2d2d2;
+//                     border-radius: 10px;
+//                     cursor: pointer;
     
-                }
+//                 }
 
-                >input{
-                    display: none;
-                }
-            }
+//                 >input{
+//                     display: none;
+//                 }
+//             }
 
-            .upload-status{
-                display: flex;
-                flex-direction: column;
-                width: 350px;
+//             .upload-status{
+//                 display: flex;
+//                 flex-direction: column;
+//                 width: 350px;
 
-                >.product{
-                    display: flex;
-                    gap: 1rem;
-                    position: relative;
-                    width: 350px;
-                    justify-content: space-between;
+//                 >.product{
+//                     display: flex;
+//                     gap: 1rem;
+//                     position: relative;
+//                     width: 350px;
+//                     justify-content: space-between;
 
-                    >.image-container{
-                        width: 50px;
-                        height: 50px;
+//                     >.image-container{
+//                         width: 50px;
+//                         height: 50px;
 
-                        img{
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                        }
-                    }
+//                         img{
+//                             width: 100%;
+//                             height: 100%;
+//                             object-fit: cover;
+//                         }
+//                     }
 
-                    .upload-progress{
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
+//                     .upload-progress{
+//                         display: flex;
+//                         flex-direction: column;
+//                         justify-content: space-between;
 
-                        .progress-bar{
-                            width: 100%;
-                            height: 5px;
-                            background-color: #d2d2d2;
-                            border-radius: 5px;
-                            position: relative;
-                        }
-                    }
+//                         .progress-bar{
+//                             width: 100%;
+//                             height: 5px;
+//                             background-color: #d2d2d2;
+//                             border-radius: 5px;
+//                             position: relative;
+//                         }
+//                     }
 
-                    .upload-validity{
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
+//                     .upload-validity{
+//                         display: flex;
+//                         justify-content: center;
+//                         align-items: center;
+//                     }
 
-                    .remove{
-                        display: none;
-                    }
+//                     .remove{
+//                         display: none;
+//                     }
 
-                    &:hover{
-                        .remove{
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            position: absolute;
-                            top: 0;
-                            right: 0;
-                            width: 100%;
-                            height: 100%;
-                        }
-                    }
-                }
-            }
-                .buttons{
-                    display: flex;
-                    gap: 1rem;
-                    justify-content: space-between;
-                    width: 350px;
-                }
-        }
+//                     &:hover{
+//                         .remove{
+//                             display: flex;
+//                             justify-content: center;
+//                             align-items: center;
+//                             position: absolute;
+//                             top: 0;
+//                             right: 0;
+//                             width: 100%;
+//                             height: 100%;
+//                         }
+//                     }
+//                 }
+//             }
+//                 .buttons{
+//                     display: flex;
+//                     gap: 1rem;
+//                     justify-content: space-between;
+//                     width: 350px;
+//                 }
+//         }
 
-    }
+//     }
 
-    .flex-group{
-        display: flex;
-        gap: 1rem;
+//     .flex-group{
+//         display: flex;
+//         gap: 1rem;
 
-        >*{
-            flex: 1;
-        }
+//         >*{
+//             flex: 1;
+//         }
 
-        .form-group{
-            display: flex;
-            flex-direction: column;
+//         .form-group{
+//             display: flex;
+//             flex-direction: column;
 
-            label{
-                margin-top: 1rem;
-            }
-        }
+//             label{
+//                 margin-top: 1rem;
+//             }
+//         }
 
-        .category{
+//         .category{
             
-            .categories{
-                display: flex;
-                gap: 1rem;
-            }
-        }
-    }
-}
+//             .categories{
+//                 display: flex;
+//                 gap: 1rem;
+//             }
+//         }
+//     }
+// }

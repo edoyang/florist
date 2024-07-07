@@ -22,5 +22,5 @@ productSchema.pre('save', function(next) {
   next();
 });
 
-const Product = mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema, 'products');
 module.exports = Product;

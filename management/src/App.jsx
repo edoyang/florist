@@ -1,37 +1,35 @@
-import { Link, Route, Routes } from 'react-router-dom'
-import './App.css'
-import { AddProduct, Dashboard, Login, Orders, Products, Register } from './pages'
+import { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import { AddProduct, Dashboard, Login, Orders, Products, Register } from './pages';
+import Sidebar from './components/Sidebar';
+import { isLogin, login, logout } from './utils/isLogin';
+import AddProductV2 from './pages/AddProductV2';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(isLogin());
+
+  useEffect(() => {
+    setIsLoggedIn(isLogin());
+  }, []);
 
   return (
     <>
-    <div className="content">
-      <div className="sidebar">
-        <div className="logo">
-          <h1>Management</h1>
-        </div>
-        <div className="menu">
-          <Link to="/">Register</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/products">Products</Link>
-          <Link to="/orders">Orders</Link>
-        </div>
-      </div>
+      <div className="content">
+        <Sidebar isLoggedIn={isLoggedIn} />
 
-      <Routes className='routes'>
-        <Route path="/" element={<Register />} />  
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/add-product" element={<AddProduct />} />
-        <Route path="/edit-product/:id" element={<AddProduct />} />
-      </Routes>
-    </div>
+        <Routes className='routes'>
+          <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/add-product" element={<AddProductV2 />} />
+          <Route path="/edit-product/:id" element={<AddProduct />} />
+        </Routes>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

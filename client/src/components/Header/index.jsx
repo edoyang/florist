@@ -112,9 +112,7 @@ const Header = () => {
                 </div>
             </div>
             <div className="main-header">
-                <div className="logo">
-                    <Link to="/"><img src={logo} alt="Logo" /></Link>
-                </div>
+                <Link className='logo' to="/"><img src={logo} alt="Logo" /></Link>
                 <div className="search-bar">
                     <input type="text" placeholder='Search' value={searchInput} onChange={handleSearchChange} />
                     <button className='search' onClick={handleSearchClick}>

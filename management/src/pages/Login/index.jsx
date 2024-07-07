@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { login } from '../../utils/isLogin';
 import './style.scss'
 
 const Login = () => {
@@ -25,8 +26,10 @@ const Login = () => {
       const data = await response.json();
       console.log(data);
       if (response.status === 200) {
+        login();
+        window.location.reload();
+        window.location.href = '/dashboard';
         alert('Login successful!');
-        // Perform further actions like redirecting to another page or storing the user session
       } else {
         alert(data.message);  // Show error message from server
       }

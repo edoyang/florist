@@ -28,6 +28,27 @@
                     height: 100%;
                     object-fit: cover;
                 }
+                .buttons{
+                    gap: 5px;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    // display: none !important;
+    
+                    button{
+                        width: 60px;
+                        height: 25px;
+                        cursor: pointer;
+                    }
+                }
+
+                &:hover{
+                    .buttons{
+                        display: flex !important;
+                    }
+                }
+
             }
 
             .product-actions{
@@ -35,15 +56,6 @@
                 top: 0;
                 right: 0;
 
-                .buttons{
-                    display: none;
-                    flex-direction: column;
-
-                    >button{
-                        height: 30px;
-                        cursor: pointer;
-                    }
-                }
             }
         }
     }
