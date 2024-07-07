@@ -25,8 +25,8 @@ const Home = () => {
     }, []);
 
     const sliderItems = [
-        { link: "/product/6689ef442d02cfb0f02f5c8a#product-page", imageUrl: "hero1.jpg"},
-        { link: "/product/6689fc9c1cda2bd306e476d4#product-page", imageUrl: "hero2.jpg" },
+        { link: "/product/6689ef442d02cfb0f02f5c8a#product-page", imageUrl: "./hero1.jpg"},
+        { link: "/product/6689fc9c1cda2bd306e476d4#product-page", imageUrl: "./hero2.jpg" },
         { link: "/product/5", imageUrl: "https://via.placeholder.com/600x300?text=Image+5" }
       ];
 
@@ -37,8 +37,8 @@ const Home = () => {
 
         <div className="promo-banner">
             <div className="container">
-                <img draggable={false} src="promo_one.jpg" alt="image1" />
-                <img draggable={false} src="promo_two.jpg" alt="image2" />
+                <img draggable={false} src="./promo_one.jpg" alt="image1" />
+                <img draggable={false} src="./promo_two.jpg" alt="image2" />
             </div>
         </div>
 

@@ -24,7 +24,7 @@ const Category = () => {
 
   const getImageSrc = (categoryName) => {
     const slug = generateSlug(categoryName);
-    return `/${slug}.svg`;
+    return `./${slug}.svg`;
   };
 
   return (
