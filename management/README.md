@@ -1,5 +1,8 @@
 # React + Vite
 
+### INSTALLATION COMMAND ###
+npm install axios@^1.7.2 react-router-dom@^6.23.1 sass@^1.77.4
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
