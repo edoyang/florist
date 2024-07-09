@@ -5,6 +5,7 @@ import { AddProduct, Dashboard, Login, Orders, Products, Register } from './page
 import Sidebar from './components/Sidebar';
 import { isLogin, login, logout } from './utils/isLogin';
 import AddProductV2 from './pages/AddProductV2';
+import EditProduct from './pages/EditProduct';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(isLogin());
@@ -25,7 +26,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/add-product" element={<AddProductV2 />} />
-          <Route path="/edit-product/:id" element={<AddProduct />} />
+          <Route path="/edit-product/:productId" element={<EditProduct />} />
         </Routes>
       </div>
     </>
