@@ -26,6 +26,7 @@ const AddProductV2 = () => {
 
     useEffect(() => {
         if (isDiscounted) {
+            setIsDiscounted(true);
             if (discountPercentage === 0) {
                 setPrice(originalPrice); 
                 setDiscountPercentage(0);
@@ -47,14 +48,14 @@ const AddProductV2 = () => {
     };
 
     const logAllStates = () => {
-        console.log("Images: ", images);
-        console.log("Name: ", name);
-        console.log("Original Price: ", originalPrice);
+        // console.log("Images: ", images);
+        // console.log("Name: ", name);
+        // console.log("Original Price: ", originalPrice);
         console.log("Is Discounted: ", isDiscounted);
-        console.log("Discount Percentage: ", discountPercentage);
-        console.log("Price: ", price);
-        console.log("Stocks: ", stocks);
-        console.log("Categories: ", categories);
+        // console.log("Discount Percentage: ", discountPercentage);
+        // console.log("Price: ", price);
+        // console.log("Stocks: ", stocks);
+        // console.log("Categories: ", categories);
     };
 
     return (

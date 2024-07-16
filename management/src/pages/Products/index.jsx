@@ -53,7 +53,7 @@ const Products = () => {
         {products.map((product) => (
           <div key={product._id} className="product">
             <div className="product-image">
-              <img src={product.product_image[0]} alt={product.product_name} />
+              <img src={product.product_image[0].url} alt={product.product_name} />
               <div className="buttons flex">
                 <Link to={`/edit-product/${product._id}`}>
                   <button className="btn-primary">Edit</button>

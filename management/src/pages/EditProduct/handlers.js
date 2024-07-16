@@ -1,32 +1,62 @@
 import axios from 'axios';
 
-export const handleUpdate = async (productId, name, originalPrice, isDiscounted, discountPercentage, price, stocks, categories = [], images = []) => {
-    const formData = new FormData();
+export const imageCompare = (originalImages, currentImages) => {
+    const originalKeys = new Set(originalImages.map(img => img.id)); // Using unique IDs
+    const currentKeys = new Set(currentImages.map(img => img.id));
 
+    const added = currentImages.filter(img => !originalKeys.has(img.id));
+    const removed = originalImages.filter(img => !currentKeys.has(img.id));
+    const unchanged = currentImages.filter(img => originalKeys.has(img.id));
+
+    return { added, removed, unchanged };
+};
+
+
+export const handleUpdate = async (productId, name, originalPrice, isDiscounted, discountPercentage, price, stocks, categories, originalImages, currentImages) => {
+    const { added, removed, unchanged } = imageCompare(originalImages, currentImages);
+    console.log('Added Images:', added);
+    console.log('Removed Images:', removed);
+    console.log('Unchanged Images:', unchanged);
+
+    const formData = new FormData();
     formData.append('product_name', name);
     formData.append('original_price', originalPrice);
+    formData.append('isDiscounted', isDiscounted);
+    formData.append('discountPercentage', discountPercentage);
     formData.append('price', price);
-    categories.forEach(category => formData.append('category', category));
     formData.append('stocks', stocks);
-    formData.append('discount', isDiscounted ? discountPercentage : 0);
-
-    images.forEach(image => {
-        formData.append('product_image', image.file); // Append the actual file object
+    categories.forEach(category => formData.append('category', category));
+    formData.append('isActive', stocks > 0);
+    formData.append('addedImages', JSON.stringify(added.map(img => img.file.name)));
+    removed.forEach(image => {
+        formData.append('removedImages', image.publicId);  // Send each publicId directly, not as JSON
     });
+    added.forEach(image => {
+        formData.append('product_image', image.file);  // Append the actual file object
+    });
+    const updateData = {
+        product_name: name,
+        original_price: originalPrice,
+        isDiscounted: isDiscounted,
+        discountPercentage: discountPercentage,
+        price: price,
+        stocks: stocks,
+        category: categories.filter(cat => cat.checked).map(cat => cat.id),
+        addedImages: added.map(img => img.file.name),
+        removedImages: removed.map(img => img.publicId),
+    };
+
+    console.log ('Sending data:', updateData);
 
     try {
-        const response = await axios.put(`http://localhost:3000/update-product/${productId}`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
+        const response = await axios.put(`http://localhost:3000/update-product/${productId}`, formData);
         console.log('Server response:', response.data);
         alert('Product updated successfully');
     } catch (error) {
         console.error('Failed to update product:', error.response?.data || error.message);
+        alert('Failed to update product: ' + (error.response?.data.error || error.message));
     }
 };
-
 
 export const handlePriceInput = (field, value, isDiscounted, discountPercentage, setOriginalPrice, setPrice) => {
     value = parseFloat(value) || 0;  // Ensure working with numbers, defaulting to 0 if invalid
@@ -50,22 +80,14 @@ export const handleImageChange = (event, setImages) => {
     if (files.length) {
         const newImages = Array.from(files).map(file => ({
             url: URL.createObjectURL(file),
-            file, // Store the actual file object for form submission
-            name: file.name
+            file,
+            name: file.name,
         }));
         setImages(prevImages => [...prevImages, ...newImages]); 
     }
-    event.target.value = null;
+    event.target.value = "";  // Clear the input after files are selected
 };
 
-export const removeImage = async (index, imageUrl, setImages) => {
-    try {
-        const response = await axios.delete('http://localhost:3000/delete-image', { data: { imageUrl } });
-        console.log('Delete response:', response.data);
-        setImages(currentImages => currentImages.filter((_, i) => i !== index)); // Remove from state if deletion was successful
-        alert('Image deleted successfully');
-    } catch (error) {
-        console.error('Failed to delete image:', error.response?.data || error.message);
-        alert('Failed to delete image');
-    }
+export const removeImage = (name, setImages) => {
+    setImages(currentImages => currentImages.filter(image => image.name !== name));
 };

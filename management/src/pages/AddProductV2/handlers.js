@@ -5,10 +5,12 @@ export const handleSubmit = async (name, originalPrice, isDiscounted, discountPe
 
     formData.append('product_name', name);
     formData.append('original_price', originalPrice);
+    formData.append('isDiscounted', isDiscounted);
+    formData.append('discountPercentage', discountPercentage);
     formData.append('price', price);
-    categories.forEach(category => formData.append('category', category));
     formData.append('stocks', stocks);
-    formData.append('discount', isDiscounted ? discountPercentage : 0);
+    categories.forEach(category => formData.append('category', category));
+    formData.append('isActive', stocks > 0);
 
     images.forEach(image => {
         formData.append('product_image', image.file); // Append the actual file object

@@ -3,15 +3,20 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
   product_name: String,
   original_price: Number,
-  price: Number,
-  category: [String],
-  stocks: { type: Number, default: 0 },
-  total_sold: { type: Number, default: 0 },
-  review: { type: Number, default: 0 },
-  isActive: { type: Boolean, default: true },
+  isDiscounted: Boolean,
   discount: Number,
-  product_image: [String]
+  price: Number,
+  stocks: Number,
+  category: [String],
+  isActive: Boolean,
+  total_sold: Number,
+  review: Number,
+  product_image: [{
+    url: String,
+    publicId: String
+  }]
 });
+
 
 productSchema.pre('save', function(next) {
   if (this.stocks === 0) {

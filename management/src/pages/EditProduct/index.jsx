@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import FormGroup from '../../components/FormGroup';
 import CategoriesFormGroup from '../../components/CategoriesFormGroup';
-import { handleImageChange, removeImage, handlePriceInput, handleUpdate } from './handlers';
+import { handleImageChange, removeImage, handlePriceInput, handleUpdate, imageCompare } from './handlers';
 import useOptimistic from '../../utils/useOptimistic';
 import './style.scss';
 
 const EditProduct = () => {
-    const { productId } = useParams(); // Ensure this is correct
+    const { productId } = useParams();
+    const [originalImages, setOriginalImages] = useState([]);
     const [images, setImages] = useState([]);
     const [name, setName] = useState('');
     const [originalPrice, setOriginalPrice] = useState('');
@@ -25,37 +26,100 @@ const EditProduct = () => {
         { id: 'memorial', label: 'Memorial', checked: false }
     ]);
     const [isActive, setIsActive] = useState(false);
-
     const { state, isPending, error, run } = useOptimistic(null);
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/product/${productId}`);
+
                 const product = response.data;
     
                 setName(product.product_name);
                 setOriginalPrice(product.original_price);
+                setIsDiscounted(product.isDiscounted === 'true' || product.isDiscounted === true);
                 setPrice(product.price);
                 setStocks(product.stocks);
                 setIsActive(product.isActive);
                 setDiscountPercentage(product.discount);
-                setIsDiscounted(product.discount > 0);
-                setImages(product.product_image.map((imageUrl, index) => ({ url: imageUrl, name: imageUrl })));
+                setOriginalImages(product.product_image.map((image, index) => ({
+                    url: image.url,
+                    name: `image-${index}`,
+                    publicId: image.publicId || `key-${index}`,
+                    id: image._id
+                })));
+                setImages(product.product_image.map((image, index) => ({
+                    url: image.url,
+                    name: `image-${index}`,
+                    publicId: image.publicId || `key-${index}`,
+                    id: image._id
+                })));
     
                 // Update categories based on fetched product
-                const productCategories = product.category; // Array of categories from the product
+                const productCategories = product.category;
                 setCategories(categories.map(category => ({
                     ...category,
-                    checked: productCategories.includes(category.id) // Check if category.id is in the product's category array
+                    checked: productCategories.includes(category.id)
                 })));
+
+                const fetchedImages = product.product_image.map((image, index) => ({
+                    url: image.url,
+                    name: `image-${index}`,
+                    publicId: image.publicId || `key-${index}`,
+                    id: image._id
+                }));
+                setImages(fetchedImages);
+                setOriginalImages(fetchedImages);
+
             } catch (error) {
                 console.error("Failed to retrieve product", error);
             }
         };
     
         fetchProduct();
-    }, [productId]); // Only rerun if productId changes
+    }, [productId]);
+
+    useEffect(() => {
+        if (isDiscounted) {
+            setIsDiscounted(true);
+            if (discountPercentage === 0) {
+                setPrice(originalPrice); 
+                setDiscountPercentage(0);
+            } else {
+                const original = parseFloat(originalPrice);
+                const discount = parseFloat(discountPercentage);
+                const discountedPrice = original - (original * (discount / 100));
+                setPrice(discountedPrice.toFixed(2));
+            }
+        } else {
+            setDiscountPercentage(0); 
+            setPrice(originalPrice);
+        }
+    }, [originalPrice, discountPercentage, isDiscounted]);
+
+    const logButtons = () => {
+        console.log('Logging states before update:', {
+            'Name': name,
+            'Original Price': originalPrice,
+            'Is Discounted': isDiscounted,
+            'Discount Percentage': discountPercentage,
+            'Price': price,
+            'Stocks': stocks,
+            'Categories': categories,
+            'Active': isActive,
+            'Images': images,
+            'Original Images': originalImages
+        });
+    }
+
+    const handleFormUpdate = () => {
+        const selectedCategories = categories.filter(category => category.checked).map(category => category.id);
+        const { added, removed, unchanged } = imageCompare(originalImages, images);
+    
+        console.log('Image changes:', { added, removed, unchanged });
+        
+        run(() => handleUpdate(productId, name, originalPrice, isDiscounted, discountPercentage, price, stocks, selectedCategories, originalImages, images, isActive));
+    }
     
 
     return (
@@ -69,20 +133,20 @@ const EditProduct = () => {
                     <FormGroup label="Name" id="name" type="text" required value={name} onChange={e => setName(e.target.value)} />
                     <FormGroup label="Original Price" id="original-price" type="number" required value={originalPrice}
                         onChange={e => handlePriceInput('originalPrice', e.target.value, isDiscounted, discountPercentage, setOriginalPrice, setPrice)} />
-                    <FormGroup label="Discount" id="discount-state" type="checkbox" checkbox value={isDiscounted} onChange={e => setIsDiscounted(e.target.checked)} />
+                    <FormGroup label="Discount" id="discount-state" type="checkbox" value={isDiscounted} onChange={e => setIsDiscounted(e.target.checked)} />
                     <FormGroup label="Discount (%)" id="discount" type="number" required disabled={!isDiscounted} value={discountPercentage} onChange={e => setDiscountPercentage(parseFloat(e.target.value) || 0)} />
                     <FormGroup label="Price" id="price" type="number" required disabled={!isDiscounted} value={price}
-                        onChange={e => handlePriceInput('price', e.target.value, isDiscounted, discountPercentage, setOriginalPrice, setPrice)} />
+                    onChange={e => handlePriceInput('price', e.target.value, isDiscounted, discountPercentage, setOriginalPrice, setPrice)} />
                     <FormGroup label="Stocks" id="stocks" type="number" required value={stocks} onChange={e => setStocks(parseInt(e.target.value, 10) || 0)} />
-                    <CategoriesFormGroup categories={categories} setCategories={setCategories} />
-                    <FormGroup label="Active" id="active-state" type="checkbox" checkbox value={isActive} onChange={e => setIsActive(e.target.checked)} />
+                    <CategoriesFormGroup categories={categories}  setCategories={setCategories} />
+                    <FormGroup label="Active" id="active-state" type="checkbox" value={isActive} onChange={e => setIsActive(e.target.checked)} />
                 </div>
 
                 <div className="right">
                     <div className="image-preview">
-                        {images.map((image, index) => (
-                            <div className="image-container" key={index} onClick={() => removeImage(index, setImages)}>
-                                <img src={image.url} draggable="false" alt="Uploaded Preview" style={{ cursor: 'pointer' }} />
+                        {images.map((image) => (
+                            <div className="image-container" key={image.name} onClick={() => removeImage(image.name, setImages)}>
+                                <img src={image.url} draggable="false" alt={image.name} style={{ cursor: 'pointer' }} />
                                 <span className="remove-image">Remove this image?</span>
                             </div>
                         ))}
@@ -93,11 +157,12 @@ const EditProduct = () => {
                         <label htmlFor="image-upload">Click to upload image</label>
                         <div className="file-names">
                             {images.map(image => 
-                                <span key={image.name}>{image.name}</span>
+                                <span key={image.name}>{image.url}</span>
                             )}
                         </div>
                     </div>
-                    <button type='button' onClick={handleUpdate} disabled={isPending}>
+                    <button type='button' onClick={logButtons}>Logging</button>
+                    <button type='button' onClick={handleFormUpdate}>
                         {isPending ? 'Updating...' : 'Update Product'}
                     </button>
                     {error && <div className="error">{error.message}</div>}
