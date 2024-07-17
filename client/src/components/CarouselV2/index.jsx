@@ -75,7 +75,7 @@ const CarouselV2 = ({ title, products, links }) => {
             <Link to={`/product/${product._id}#product-page`} key={product._id} className="item">
                   <div className="image">
                       <img draggable={false} 
-                        src={product.product_image[0]} 
+                        src={product.product_image[0].url} 
                         alt={product.product_name}
                         onError={handleImageError}
                       />

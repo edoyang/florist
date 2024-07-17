@@ -3,7 +3,7 @@ const cloudinary = require('cloudinary').v2;
 
 exports.updateProduct = async (req, res) => {
     const { productId } = req.params;
-    let { product_name, original_price, isDiscounted, discountPercentage, price, stocks, category, removedImages } = req.body;
+    let { product_name, original_price, isDiscounted, discountPercentage, price, stocks, category, removedImages, addedImages } = req.body;
 
     if (!Array.isArray(removedImages)) {
         removedImages = removedImages ? [removedImages] : [];  // Ensure it's always an array
@@ -33,12 +33,20 @@ exports.updateProduct = async (req, res) => {
 
             // Await the resolution of all promises
             const deleteResults = await Promise.all(deleteImagePromises);
-            console.log("Deletion results:", deleteResults);
 
             // Filter out the deleted images from the product's image array
             product.product_image = product.product_image.filter(image => 
                 !removedImages.includes(image.publicId)
             );
+        }
+
+        // Handle addition of new images
+        if (req.files) {
+            const newImages = req.files.map(file => ({
+                url: file.path,
+                publicId: file.filename
+            }));
+            product.product_image = [...product.product_image, ...newImages];
         }
 
         await product.save();

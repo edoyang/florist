@@ -36,7 +36,8 @@ exports.addProduct = async (req, res) => {
       category,
       stocks,
       product_image: product_images,
-      isActive: stocks > 0
+      isActive: stocks > 0,
+      review: 0,
     });
 
     await newProduct.save();

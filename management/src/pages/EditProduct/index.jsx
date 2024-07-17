@@ -116,7 +116,7 @@ const EditProduct = () => {
         const selectedCategories = categories.filter(category => category.checked).map(category => category.id);
         const { added, removed, unchanged } = imageCompare(originalImages, images);
     
-        console.log('Image changes:', { added, removed, unchanged });
+        // console.log('Image changes:', { added, removed, unchanged });
         
         run(() => handleUpdate(productId, name, originalPrice, isDiscounted, discountPercentage, price, stocks, selectedCategories, originalImages, images, isActive));
     }

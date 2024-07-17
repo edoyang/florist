@@ -14,9 +14,9 @@ export const imageCompare = (originalImages, currentImages) => {
 
 export const handleUpdate = async (productId, name, originalPrice, isDiscounted, discountPercentage, price, stocks, categories, originalImages, currentImages) => {
     const { added, removed, unchanged } = imageCompare(originalImages, currentImages);
-    console.log('Added Images:', added);
-    console.log('Removed Images:', removed);
-    console.log('Unchanged Images:', unchanged);
+    // console.log('Added Images:', added);
+    // console.log('Removed Images:', removed);
+    // console.log('Unchanged Images:', unchanged);
 
     const formData = new FormData();
     formData.append('product_name', name);
@@ -27,12 +27,11 @@ export const handleUpdate = async (productId, name, originalPrice, isDiscounted,
     formData.append('stocks', stocks);
     categories.forEach(category => formData.append('category', category));
     formData.append('isActive', stocks > 0);
-    formData.append('addedImages', JSON.stringify(added.map(img => img.file.name)));
     removed.forEach(image => {
         formData.append('removedImages', image.publicId);  // Send each publicId directly, not as JSON
     });
     added.forEach(image => {
-        formData.append('product_image', image.file);  // Append the actual file object
+        formData.append('product_images', image.file);  // Append the actual file object
     });
     const updateData = {
         product_name: name,
@@ -42,8 +41,8 @@ export const handleUpdate = async (productId, name, originalPrice, isDiscounted,
         price: price,
         stocks: stocks,
         category: categories.filter(cat => cat.checked).map(cat => cat.id),
-        addedImages: added.map(img => img.file.name),
         removedImages: removed.map(img => img.publicId),
+        addedImages: added.map(img => img.file),
     };
 
     console.log ('Sending data:', updateData);
