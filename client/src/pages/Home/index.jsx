@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 
 const Home = () => {
+    const api = import.meta.env.VITE_API_URL;
 
     const [products, setProductData] = useState([]); 
 
@@ -13,7 +14,7 @@ const Home = () => {
       const fetchData = async () => {
         try {
           // CHANGE UPON DEPLOYMENT
-          const response = await fetch('http://localhost:3000/products');
+          const response = await fetch(`${api}/products`);
           const data = await response.json();
           setProductData(data);
         } catch (error) {

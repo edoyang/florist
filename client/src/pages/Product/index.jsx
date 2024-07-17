@@ -5,6 +5,8 @@ import PriceDisplay from "../../components/PriceDisplay";
 import "./style.scss";
 
 const Product = () => {
+  const api = import.meta.env.VITE_API_URL;
+
   const [products, setProductData] = useState([]);
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState('');
@@ -15,7 +17,7 @@ const Product = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/products');
+        const response = await fetch(`${api}/products`);
         const data = await response.json();
         setProductData(data);
         const foundProduct = data.find(p => p._id === id);
@@ -52,12 +54,12 @@ const Product = () => {
     <div id="product-page" className="product-page">
       <div className="images">
         <div className="image-display">
-          <img src={mainImage} alt={product.product_name} onError={handleImageError} />
+          <img src={mainImage.url} alt={product.product_name} onError={handleImageError} />
         </div>
         <div className="image-collection">
           {product.product_image.map((img, index) => (
             <div className="collection-item" key={index}>
-              <img src={img} alt={`${product.product_name} ${index + 1}`}
+              <img src={img.url} alt={`${product.product_name} ${index + 1}`}
                 onClick={() => handleThumbnailClick(img)}
                 onError={handleImageError} />
             </div>

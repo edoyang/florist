@@ -6,6 +6,8 @@ import useOptimistic from '../../utils/useOptimistic';  // Correct the import pa
 import './style.scss';
 
 const AddProductV2 = () => {
+    const api = import.meta.env.VITE_API_URL;
+
     const [images, setImages] = useState([]);
     const [name, setName] = useState('');
     const [originalPrice, setOriginalPrice] = useState('');

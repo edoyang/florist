@@ -17,6 +17,8 @@ export const handleUpdate = async (productId, name, originalPrice, isDiscounted,
     // console.log('Added Images:', added);
     // console.log('Removed Images:', removed);
     // console.log('Unchanged Images:', unchanged);
+    const api = import.meta.env.VITE_API_URL;
+
 
     const formData = new FormData();
     formData.append('product_name', name);
@@ -48,7 +50,7 @@ export const handleUpdate = async (productId, name, originalPrice, isDiscounted,
     console.log ('Sending data:', updateData);
 
     try {
-        const response = await axios.put(`http://localhost:3000/update-product/${productId}`, formData);
+        const response = await axios.put(`${api}/update-product/${productId}`, formData);
         console.log('Server response:', response.data);
         alert('Product updated successfully');
     } catch (error) {

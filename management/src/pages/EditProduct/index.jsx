@@ -162,7 +162,7 @@ const EditProduct = () => {
                         </div>
                     </div>
                     <button type='button' onClick={logButtons}>Logging</button>
-                    <button type='button' onClick={handleFormUpdate}>
+                    <button type='button' disabled={isPending} onClick={handleFormUpdate}>
                         {isPending ? 'Updating...' : 'Update Product'}
                     </button>
                     {error && <div className="error">{error.message}</div>}

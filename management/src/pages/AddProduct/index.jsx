@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import './style.scss';
 
 const AddProduct = () => {
+    const api = import.meta.env.VITE_API_URL;
+
     const [name, setName] = useState('');
     const [originalPrice, setOriginalPrice] = useState('');
     const [discountState, setDiscountState] = useState(false);
@@ -19,7 +21,7 @@ const AddProduct = () => {
 
     useEffect(() => {
         if (isEditMode) {
-            axios.get(`http://localhost:3000/product/${id}`)
+            axios.get(`${api}/product/${id}`)
                 .then(response => {
                     const product = response.data;
                     setName(product.product_name || '');
@@ -86,8 +88,8 @@ const AddProduct = () => {
         try {
             const config = { headers: { 'Content-Type': 'multipart/form-data' } };
             const response = isEditMode ?
-                await axios.put(`http://localhost:3000/products/${id}`, formData, config) :
-                await axios.post('http://localhost:3000/add-product', formData, config);
+                await axios.put(`${api}/products/${id}`, formData, config) :
+                await axios.post(`${api}/add-product`, formData, config);
             console.log(`${isEditMode ? 'Product updated' : 'Product added'}:`, response.data);
             alert(`${isEditMode ? 'Product updated' : 'Product added'} successfully!`);
         } catch (error) {
@@ -163,7 +165,7 @@ const AddProduct = () => {
         } else if (image.url) {
             // If it's an existing image from the server, attempt to delete it
             try {
-                await axios.delete(`http://localhost:3000/images/${image.name}`); // Adjust this endpoint as needed
+                await axios.delete(`${api}/images/${image.name}`); // Adjust this endpoint as needed
                 setImages(images.filter((_, idx) => idx !== index));
             } catch (error) {
                 console.error('Failed to delete image:', error);

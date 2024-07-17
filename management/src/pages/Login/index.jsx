@@ -4,6 +4,8 @@ import './style.scss'
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
+  const api = import.meta.env.VITE_API_URL;
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -16,28 +18,32 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch(`${api}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(credentials)
       });
-      const data = await response.json();
-      console.log(data);
-      if (response.status === 200) {
-        login();
-        window.location.reload();
+  
+      if (response.ok) {  // Checks if the status code is in the range 200-299
+        const data = await response.json();
+        console.log(data);
+        login();  // Assuming this function properly sets up the session or token
         window.location.href = '/dashboard';
         alert('Login successful!');
       } else {
-        alert(data.message);  // Show error message from server
+        // Handle non-200 responses
+        const errorData = await response.text();  // Using text() in case the response is not in JSON format
+        const message = errorData ? JSON.parse(errorData).message : 'Failed to login';
+        alert(message);
       }
     } catch (error) {
       console.error('Failed to login:', error);
-      alert('Failed to login');
+      alert('Failed to process login');
     }
   };
+  
 
   return (
     <div className="login-page page">

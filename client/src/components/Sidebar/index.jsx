@@ -6,13 +6,15 @@ import Category from '../Category'
 import { useEffect, useState } from 'react'
 
 const Sidebar = () => {
+  const api = import.meta.env.VITE_API_URL;
+
   const [productData, setProductData] = useState([]); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // CHANGE UPON DEPLOYMENT
-        const response = await fetch('http://localhost:3000/products');
+        const response = await fetch(`${api}/products`);
         const data = await response.json();
         setProductData(data);
       } catch (error) {

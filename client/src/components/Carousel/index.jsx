@@ -63,7 +63,7 @@ const Carousel = ({ title, products, productsPerGrid, type }) => {
               {chunk.map(product => (
                 <Link to={`/product/${product._id}#product-page`} key={product._id} className="item">
                 <div className="image">
-                    <img onError={handleImageError} draggable="false" src={product.product_image[0]} alt={product.product_name} />
+                    <img draggable="false" src={product.product_image[0].url} alt={product.product_name} onError={handleImageError}/>
                   </div>
                   <div className="detail">
                     <p className='pname'>{product.product_name}</p>

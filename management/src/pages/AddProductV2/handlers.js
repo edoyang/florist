@@ -3,6 +3,8 @@ import axios from 'axios';
 export const handleSubmit = async (name, originalPrice, isDiscounted, discountPercentage, price, stocks, categories, images) => {
     const formData = new FormData();
 
+    const api = import.meta.env.VITE_API_URL;
+
     formData.append('product_name', name);
     formData.append('original_price', originalPrice);
     formData.append('isDiscounted', isDiscounted);
@@ -17,7 +19,7 @@ export const handleSubmit = async (name, originalPrice, isDiscounted, discountPe
     });
 
     try {
-        const response = await axios.post('http://localhost:3000/add-product', formData, {
+        const response = await axios.post(`${api}/add-product`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
