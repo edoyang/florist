@@ -12,6 +12,8 @@ app.use(express.json());
 // CORS configuration
 const allowedOrigins = [process.env.FRONTEND_URL, process.env.BACKEND_URL];
 
+console.log('allowedOrigins:', allowedOrigins);
+
 app.use(cors({
   origin: function (origin, callback) {
     // allow requests with no origin (like mobile apps or curl requests)
