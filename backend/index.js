@@ -34,6 +34,15 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use('/', userRoutes);
 app.use('/', productRoutes);
 
+app.get('/get-ip', async (req, res) => {
+  try {
+      const response = await axios.get('https://api.ipify.org?format=json');
+      res.send(response.data); // This will return the IP address
+  } catch (error) {
+      res.status(500).send('Error retrieving IP address');
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
