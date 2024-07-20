@@ -10,7 +10,7 @@ const cloudinary = require('cloudinary').v2;
 const app = express();
 
 // CORS configuration
-const allowedOrigins = ['https://meraki-wrap.vercel.app', 'https://florist-management-site.vercel.app'];
+const allowedOrigins = ['https://meraki-wrap.vercel.app', 'https://florist-management-site.vercel.app', 'https://florist-management-site.vercel.app/'];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -36,24 +36,20 @@ cloudinary.config({
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true, // Ensuring you use the new URL string parser as the old one is deprecated
-  useUnifiedTopology: true, // Using the new Server Discover and Monitoring engine
-  serverSelectionTimeoutMS: 20000 // 20 seconds timeout
+  serverSelectionTimeoutMS: 20000,
 })
   .then(() => console.log('MongoDB connection successful'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Routes
-app.use('/user', userRoutes); // Changed for better route clarity
-app.use('/product', productRoutes); // Changed for better route clarity
+app.use('/', userRoutes);
+app.use('/', productRoutes);
 
-// IP Retrieval Route
 app.get('/get-ip', async (req, res) => {
   try {
-    const response = await axios.get('https://api.ipify.org?format=json');
-    res.send(response.data); // This will return the IP address
+      const response = await axios.get('https://api.ipify.org?format=json');
+      res.send(response.data); // This will return the IP address
   } catch (error) {
-    res.status(500).send('Error retrieving IP address');
+      res.status(500).send('Error retrieving IP address');
   }
 });
 
