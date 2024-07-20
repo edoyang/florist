@@ -7,7 +7,6 @@ const productRoutes = require('./routes/productRoutes');
 const cloudinary = require('cloudinary').v2;
 
 const app = express();
-app.use(express.json());
 
 // CORS configuration
 const allowedOrigins = ['https://meraki-wrap.vercel.app', 'https://florist-management-site.vercel.app'];
@@ -23,7 +22,10 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+// This should be right after the cors middleware
+app.options('*', cors()); // Enable preflight across-the-board
 
+app.use(express.json());
 // Cloudinary configuration
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
