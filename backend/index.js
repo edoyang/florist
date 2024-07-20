@@ -10,14 +10,13 @@ const cloudinary = require('cloudinary').v2;
 const app = express();
 
 // CORS configuration
-const allowedOrigins = ['https://meraki-wrap.vercel.app', 'https://florist-management-site.vercel.app'];
+const allowedOrigins = ['https://meraki-wrap.vercel.app', 'https://florist-management-site.vercel.app', 'https://florist-management-site.vercel.app/'];
 
 app.use(cors({
   origin: allowedOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
-  preflightContinue: false,
 }));
 
 app.use(express.json());
