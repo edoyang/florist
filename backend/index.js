@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 // CORS configuration
-const allowedOrigins = [process.env.FRONTEND_URL, process.env.BACKEND_URL];
+const allowedOrigins = ['https://meraki-wrap.vercel.app/', 'https://florist-management-site.vercel.app/'];
 
 app.use(cors({
   origin: function (origin, callback) {
